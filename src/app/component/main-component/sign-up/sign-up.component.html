@@ -1,7 +1,7 @@
 <div class="p-4 mx-auto mt-8 shadow-2xl rounded-xl w-fit bg-g text-w">
     <h1 class="mb-4 text-center">Inscription</h1>
 
-    <form>
+    <form (ngSubmit)="addUsers(userFrom)" #userFrom="ngForm">
         <div class="p-2">
 
             <div class="flex">
