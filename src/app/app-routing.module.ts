@@ -18,6 +18,7 @@ import { LoginComponent } from './component/main-component/login/login.component
 import { NavbarComponent } from './component/main-component/navbar/navbar.component';
 import { SignUpComponent } from './component/main-component/sign-up/sign-up.component';
 
+
 const routes: Routes = [
   //Account-component
   { path: 'account', component: AccountComponent},
@@ -31,7 +32,7 @@ const routes: Routes = [
   { path: 'valideaccount', component: ValidateAccountComponent},
   //maincomponent
   { path: 'courses', component: CoursesComponent},
-  { path: 'homepage', component: HomepageComponent},
+  { path: '', component: HomepageComponent},
   { path: 'login', component: LoginComponent},
   { path: 'navbar', component: NavbarComponent},
   { path: 'signup', component: SignUpComponent},

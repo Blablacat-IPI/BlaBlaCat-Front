@@ -1,1 +1,76 @@
-<p>homepage works!</p>
+<div>
+    <!-- Présentation -->
+    <div class="flex place-items-center">
+        <!-- Texte et Bouton inscription -->
+        <div class="p-4 m-4 text-center ">
+            <h1 class="text-w">Commencer à partager vos trajets en vous inscrivant !</h1>
+            <button class="py-2 mt-4 text-3xl w-52 buttonOrange hover:outline-offset-2 hover:outline-2 hover:outline-double hover:outline-b" routerLink="signup">S'inscrire</button>
+        </div>
+        <!-- Gros logo -->
+        <div class="flex">
+            <img class="w-auto" src="/assets/image/gros_logo_accueil.png" alt="Logo">
+        </div>
+    </div>
+    <!-- Card derniers trajets -->
+    <div>
+        <h1 class="m-10 text-center text-b">Découvrir les derniers trajets</h1>
+
+        <div class="p-4 ml-40 mr-40 rounded-xl">
+            <!-- Début de la boucle ngFor -->
+            <div>
+                <!-- card -->
+                <div class="p-4 m-10 w-fit cardGrise">
+                    <h3 class="text-center">Trajet proposé par</h3>
+                    <!-- {{course.driverUsername}} -->
+                    <h3 class="text-center text-o">Bob</h3>
+            
+                    <div class="flex-col mt-2">
+                        <div>
+                            <label>Adresse de départ</label>
+                        </div>
+                        <div class="mt-2">
+                            <!-- {{course.streetDeparture +" "+course.cityDeparture +" "+ course.departureZipCode}} -->
+                            <button type="text" class="w-full inputBlue" disabled>80 bis route de clisson 44200 Nantes</button>
+                        </div>
+                    </div>
+                    <div class="flex-col mt-2">
+                        <div>
+                            <label>Adresse d'arrivée</label>
+                        </div>
+                        <div class="mt-2">
+                            <!-- {{course.streetArrival + " " + course.cityArrival + " " + course.arrivalZipCode}} -->
+                            <button type="text" class="w-full inputBlue" disabled>Entreprise !</button>
+                        </div>
+                    </div>  
+                    <div class="flex mt-2">
+                        <div class="flex-col basis-1/2">
+                            <div class="mt-2">
+                                <label>Date</label>
+                            </div>
+                            <div class="mt-2 mr-2">
+                                <!-- {{course.date| date:'shortDate'}} -->
+                                <button type="text" class="w-full inputBlue" disabled>26/05/2022</button>
+                            </div>
+                        </div>
+                        <div class="flex-col basis-1/2">
+                            <div class="mt-2 ml-2">
+                                <label>Horaire</label>
+                            </div>
+                            <div class="mt-2 ml-2">
+                                <!-- {{course.date | date:'shortTime'}} -->
+                                <button type="text" class="w-full inputBlue" disabled>14 H 45</button>
+                            </div>
+                        </div>
+                    </div>          
+                </div>
+                <!-- Fin card -->
+            </div>
+            <!-- Fin ngfor -->
+        </div>
+        <div class="mt-10 mb-32 text-center">
+            <button class="py-2 text-3xl w-52 buttonBlue hover:outline-offset-2 hover:outline-2 hover:outline-double hover:outline-w">Voir plus</button>
+        </div>
+
+    </div>
+    <!-- Fin dernier Trajet -->
+</div>

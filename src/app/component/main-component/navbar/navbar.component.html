@@ -1,24 +1,24 @@
 <ul class="flex justify-between shadow-xl nav shadow-black-300">
     <div class="p-4 ml-20">
       <li class="nav-brand">
-        <img class="w-72" src="/assets/image/logo_accueil.png" alt="Logo">
+        <img class="w-72" src="/assets/image/logo_accueil_BO.png" alt="Logo">
       </li>
     </div>
     <div class="flex justify-between p-4 pr-10 nav">
       <li class="flex items-center p-10 nav-item">
-        <button class="nav-link" (click)="afficherHomepage()">Accueil</button>
-      </li>
-      <li class="flex items-center p-10 nav-itemr">
-        <button class="nav-link" (click)="afficherCourses()">Tous les trajets</button>
+        <button class="p-2 nav-link hover:underline hover:underline-offset-8 hover:decoration-o" routerLink="">Accueil</button>
       </li>
       <li class="flex items-center p-10 nav-item">
-        <button class="nav-link" (click)="afficherSignup()">Inscription</button>
+        <button class="p-2 nav-link hover:underline hover:underline-offset-8 hover:decoration-o" routerLink="courses">Tous les trajets</button>
       </li>
       <li class="flex items-center p-10 nav-item">
-        <button class="nav-link" (click)="afficherLogin()">Connexion</button>
+        <button class="p-2 nav-link hover:underline hover:underline-offset-8 hover:decoration-o" routerLink="signup">Inscription</button>
       </li>
       <li class="flex items-center p-10 nav-item">
-        <button class="nav-link" (click)="afficherAccount()">Mon Compte</button>
+        <button class="p-2 nav-link hover:underline hover:underline-offset-8 hover:decoration-o" routerLink="login">Connexion</button>
+      </li>
+      <li class="flex items-center p-10 nav-item">
+        <button class="p-2 nav-link hover:underline hover:underline-offset-8 hover:decoration-o" routerLink="sidebar">Mon Compte</button>
       </li>
     </div>
   </ul>

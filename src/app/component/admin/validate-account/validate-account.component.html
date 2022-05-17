@@ -1,1 +1,35 @@
-<p>validate-account works!</p>
+<div class="p-4 m-4 text-center text-w">
+    <h1 class=" text-o">Liste des utilisateurs enregistrés</h1>
+
+    <div class="p-2 m-2 bg-green-500 text-w rounded-xl" *ngIf="register">
+        <h2>Utilisateur Enregistré</h2>
+    </div>
+
+    <div class="p-2 m-2 bg-red-500 text-w rounded-xl" *ngIf="deletion">
+        <h2>Utilisateur Supprimé Définitivement !</h2>
+    </div>
+
+    <table class="table w-full m-2 text-left bg-g rounded-xl">
+        <thead>
+            <tr>
+                <th class="p-4 m-4 text-b">ID</th>
+                <th class=" text-b">ID Entreprise</th>
+                <th class=" text-b">Nom</th>
+                <th class=" text-b">Username</th>
+                <th class=" text-b">Email</th>
+                <th class=" text-b"></th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let user of usersList">
+            <tr>
+              <td class="p-4">{{user.id}}</td>
+              <td>{{user.idCompany}}</td>
+              <td>{{user.lastName}} {{user.firstName}}</td>
+              <td>{{user.username}}</td>
+              <td>{{user.email}}</td>
+              <td><button (click)="validateByAdmin(user.id)" type="button" class="w-40 buttonBlue hover:outline-offset-2 hover:outline-2 hover:outline-double hover:outline-w">Valider</button></td>
+              <td><button (click)="deleteUsers(user.id)" type="button" name="idUser" class="w-40 buttonOrange hover:outline-offset-2 hover:outline-2 hover:outline-double hover:outline-w">Supprimer</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

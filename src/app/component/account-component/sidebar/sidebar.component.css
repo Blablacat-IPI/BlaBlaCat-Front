@@ -1,0 +1,13 @@
+.sidebar {
+    background-color: #33BEF3;
+    height: 100vh;
+}
+
+.lineseparator {
+    border-color: #EC6433;
+    border-top-width: 2px;
+}
+
+.flex {
+    line-height: 2;
+}
