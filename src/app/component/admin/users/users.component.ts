@@ -25,14 +25,14 @@ export class UsersComponent implements OnInit {
 
   deleteUsers(userId: any) {
     this.us.deleteUsersFromService(userId).subscribe(data => {
-      this.getAllUsers()
+      this.getAllUsers();
       this.deletion=true;
     })
   }
 
   softDeleteUsers(userId: any) {
     this.us.softDeleteUsersFromService(userId).subscribe(data => {
-      this.getAllUsers()
+      this.getAllUsers();
       this.deletionDouce=true;
     })
 
