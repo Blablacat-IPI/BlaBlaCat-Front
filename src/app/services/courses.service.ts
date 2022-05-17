@@ -13,6 +13,10 @@ export class CoursesService {
     return this.http.get('http://localhost:8080/Course/allValid');
   }
 
+  getLastFiveCoursesService(){
+    return this.http.get('http://localhost:8080/Course/lastFive');
+  }
+
   addCoursesFromService(course: any) {
     return this.http.post("http://localhost:8080/Course/add", course);
   }
