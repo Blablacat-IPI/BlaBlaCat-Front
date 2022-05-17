@@ -35,6 +35,9 @@ export class ValidateAccountComponent implements OnInit {
     this.us.deleteUsersFromService(userId).subscribe(data => {
       this.getAllUsers()
       this.deletion=true;
+      setTimeout(() => {
+        this.deletion = false;
+      }, 2000);
     })
   }
 

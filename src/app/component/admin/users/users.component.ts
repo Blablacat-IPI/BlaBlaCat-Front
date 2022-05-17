@@ -27,13 +27,21 @@ export class UsersComponent implements OnInit {
     this.us.deleteUsersFromService(userId).subscribe(data => {
       this.getAllUsers();
       this.deletion=true;
+      setTimeout(() => {
+        this.deletion = false;
+      }, 2000);
     })
+
+    
   }
 
   softDeleteUsers(userId: any) {
     this.us.softDeleteUsersFromService(userId).subscribe(data => {
       this.getAllUsers();
       this.deletionDouce=true;
+      setTimeout(() => {
+        this.deletionDouce = false;
+      }, 2000);
     })
 
     
