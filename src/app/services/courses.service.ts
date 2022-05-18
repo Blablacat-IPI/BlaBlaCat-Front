@@ -24,6 +24,7 @@ export class CoursesService {
   addReservationFromService(reservation: any){
     return this.http.post('http://localhost:8080/Reservation/add', reservation);
   }
+  
   searchByCityService(city: any) {
     let keyCity = city.value.keyCity;
     return this.http.get('http://localhost:8080/Course/searchcity/' + keyCity)
