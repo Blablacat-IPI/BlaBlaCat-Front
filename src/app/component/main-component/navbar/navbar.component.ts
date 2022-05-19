@@ -11,10 +11,10 @@ import { CoursesService } from 'src/app/services/courses.service';
 
 export class NavbarComponent implements OnInit {
 
-  constructor(private courseService: CoursesService) { }
+
+  constructor() { }
 
   ngOnInit(): void {
   }
 
-  
 }

@@ -28,7 +28,6 @@ export class AddcoursesComponent implements OnInit {
 
   }
 
-
   addCourses(course: any) {
     this.cs.addCoursesFromService(course.value).subscribe(date => {
       console.log('Course enregistré !')
