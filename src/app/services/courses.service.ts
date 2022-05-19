@@ -5,7 +5,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class CoursesService {
-  afficheCroix:boolean = false;
+
+  static afficheCroix:boolean = true;
 
   constructor(private http:HttpClient) { }
 
@@ -51,6 +52,15 @@ export class CoursesService {
 
   getPageMaxMyCourses() {
     return this.http.get('http://localhost:8080/Course/pageMaxMyCourses')
+  }
+
+  // ******************************** AllCourses ****************************************
+  getPageMaxOfCourses() {
+    return this.http.get('http://localhost:8080/Course/pagemax')
+  }
+
+  getPageOfCoursesFromService(page: any) {
+    return this.http.get('http://localhost:8080/Course/Page?page='+page)
   }
 
 }

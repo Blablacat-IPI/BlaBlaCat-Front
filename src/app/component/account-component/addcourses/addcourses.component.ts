@@ -24,17 +24,10 @@ export class AddcoursesComponent implements OnInit {
   constructor(private cs: CoursesService) { }
 
   ngOnInit(): void {
-    this.afficheCroix = this.cs.afficheCroix;
-    console.log(this.afficheCroix)
-    console.log(this.cs.afficheCroix)
+    this.afficheCroix = CoursesService.afficheCroix;
     this.today = this.dateNow();
     this.max = this.dateMax();
 
-  }
-
-  ngOnDestroy(): void {
-    this.cs.afficheCroix=false;
-    console.log(this.cs.afficheCroix)
   }
 
   addCourses(course: any) {

@@ -11,14 +11,9 @@ import { CoursesService } from 'src/app/services/courses.service';
 export class NavbarComponent implements OnInit {
 
 
-  constructor(private courseService: CoursesService) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
 
-  afficherCroix() {
-    this.courseService.afficheCroix = true;
-    console.log(this.courseService.afficheCroix)
-  }
-  
 }
