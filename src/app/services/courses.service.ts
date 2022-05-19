@@ -6,6 +6,8 @@ import { Injectable } from '@angular/core';
 })
 export class CoursesService {
 
+  static afficheCroix:boolean = true;
+
   constructor(private http:HttpClient) { }
 
   getCoursesFromService(){
@@ -33,14 +35,26 @@ export class CoursesService {
     return this.http.get('http://localhost:8080/Reservation/all');
   }
 
-  getPageOfMyCoursesFromService(page: any) {
+
+  // ********************************* MyReservations ************************************  
+  getPageOfMyReservationsFromService(page: any) {
     return this.http.get('http://localhost:8080/Reservation/Page?page='+page)
   }
 
-  getPageMax() {
+  getPageMaxReservations() {
     return this.http.get('http://localhost:8080/Reservation/pagemax')
   }
 
+  // ********************************* MyCourses **************************************
+  getPageOfMyCoursesFromService(page: any) {
+    return this.http.get('http://localhost:8080/Course/pageMyCourses?page='+page)
+  }
+
+  getPageMaxMyCourses() {
+    return this.http.get('http://localhost:8080/Course/pageMaxMyCourses')
+  }
+
+  // ******************************** AllCourses ****************************************
   getPageMaxOfCourses() {
     return this.http.get('http://localhost:8080/Course/pagemax')
   }

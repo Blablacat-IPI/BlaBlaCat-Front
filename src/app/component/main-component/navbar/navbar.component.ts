@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CoursesService } from 'src/app/services/courses.service';
+
 
 
 @Component({
@@ -14,5 +16,5 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  
+
 }
