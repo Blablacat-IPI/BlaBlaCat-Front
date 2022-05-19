@@ -8,7 +8,6 @@ export class CoursesService {
 
   constructor(private http:HttpClient) { }
 
-
   getCoursesFromService(){
     return this.http.get('http://localhost:8080/Course/allValid');
   }

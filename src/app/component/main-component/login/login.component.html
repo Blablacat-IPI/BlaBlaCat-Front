@@ -1,0 +1,39 @@
+<div class="p-4 mx-auto mt-4 shadow-2xl rounded-xl w-fit bg-g text-w">
+  <h1 class="mb-4 text-center">Connexion</h1>
+
+  <!-- *******************Début formulaire******************* -->
+  <form>
+
+    <!-- Pseudo ou email input -->
+    <div class="flex">
+      <div class="p-2 m-auto text-center form-group">
+        <input type="email" class="form-control inputBlue placeholder:text-w w-80" name="username" ngModel required
+          placeholder="Username or email" />
+      </div>
+    </div>
+    <!-- Password input -->
+    <div class="flex">
+      <div class="p-2 m-auto text-center form-group">
+        <input type="password" class="form-control inputBlue placeholder:text-w w-80" name="password" ngModel required
+          placeholder="Password" minlength="8" />
+      </div>
+    </div>
+
+    <!-- valider identifiants -->
+    <div class="m-2 text-center">
+      <button type="button"
+        class="py-1 text-xl mb-2 buttonBlue w-40 hover:outline-offset-2 hover:outline-2 hover:outline-double hover:outline-w">Se
+        connecter</button>
+    </div>
+
+    <!-- Redirection créer un compte -->
+    <div class="text-center">
+      <button routerLink="/signup"
+        class="p-2 text-l w-40 hover:outline-offset-2 hover:outline-2 hover:outline-double hover:outline-w buttonOrange">Pas
+        encore inscrit ?</button>
+    </div>
+
+  </form>
+  <!-- *******************Fin formulaire******************* -->
+
+</div>
