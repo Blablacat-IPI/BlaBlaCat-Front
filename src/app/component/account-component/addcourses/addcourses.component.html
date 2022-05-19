@@ -1,69 +1,74 @@
-<div class="p-4 mx-auto mt-8 bg-g shadow-2xl rounded-xl w-fit text-w">
+<div class="p-4 mx-auto mt-8 bg-g shadow-2xl rounded-xl w-max text-w">
 
-  <h1 class="mb-4 text-3xl text-center">Créer un trajet</h1>
-<div class="flex">
-  <form (ngSubmit)="addCourses(courseFrom)" #courseFrom="ngForm">
-      <div class="p-2 m-auto text-center form-group">
+    <h1 class="mb-4 text-3xl text-center">Créer un trajet</h1>
 
-          <h5 class="p-2">Adresse de départ</h5>
-          <div class="pb-2 m-auto text-center form-group col">
-              <input type="email" class="form-control signup_borderblue" placeholder="Numéro de voie et adresse"
-                  name="streetDeparture" ngModel required>
-          </div>
-
-          <div class="row">
-              <div class="pb-2 m-auto text-center form-group col-4 ">
-                  <input type="text" class="form-control signup_borderblue" placeholder="Code postal"
-                      name="departureZipCode" ngModel required>
-              </div>
-              <div class="pb-2 m-auto text-center form-group col-8">
-                  <input type="text" class="form-control signup_borderblue" placeholder="Ville" name="cityDeparture"
-                      ngModel required>
-              </div>
-          </div>
-
-          <h5 class="p-2">Adresse d'arrivée</h5>
-          <div class="pb-2 m-auto text-center form-group col">
-              <input type="email" class="form-control signup_borderorange" placeholder="Numéro de voie et adresse"
-                  name="streetArrival" ngModel required>
-          </div>
-          <div class="row">
-              <div class="pb-2 m-auto text-center form-group col-4">
-                  <input type="text" class="form-control signup_borderorange" placeholder="Code postal"
-                      name="arrivalZipCode" ngModel required>
-              </div>
-              <div class="pb-2 m-auto text-center form-group col-8">
-                  <input type="text" class="form-control signup_borderorange" placeholder="Ville" name="cityArrival"
-                      ngModel required>
-              </div>
-          </div>
-  
-          
-          <div class="p-2 text-center row">
-              <div class="pb-2 m-auto form-group col">
-                  <h5 class="p-2 col">Date et Heure</h5>
-                  <input type="datetime-local" class="form-control signup_borderblue date" name="date" value={{today}}
-                      min={{today}} max={{max}} ngModel required>
-              </div>
-              <div class="pb-2 m-auto form-group col">
-                  <h5 class="p-2 col">Nombre de place(s)</h5>
-                  <select [(ngModel)]="ngDropdown" name="numberPlace" class="form-select signup_borderblue" ngModel
-                      required>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="3">4</option>
-                  </select>
-              </div>
-          </div>
+    <form (ngSubmit)="addCourses(courseFrom)" #courseFrom="ngForm">
+        <div class="p-2 text-center form-group">
+            <h5 class="p-2">Adresse de départ</h5>
+            <div class="grid grid-cols-2 gap-3">
+                <div class="pb-2 col-span-2">
+                    <input type="email" class="form-control inputBlue placeholder:text-w w-full"
+                        placeholder="Numéro de voie et rue" name="streetDeparture" ngModel required>
+                </div>
 
 
-          <div class="pt-2 text-center col">
-              <button type="submit" class="signup_bouton1 btn btn-primary w-50">Créer le trajet</button>
-          </div>
+                <div class="text-center form-group">
+                    <input type="text" class="form-control inputBlue placeholder:text-w" placeholder="Code postal"
+                        name="departureZipCode" ngModel required>
+                </div>
+                <div class="pb-2 text-center form-group">
+                    <input type="text" class="form-control inputBlue placeholder:text-w" placeholder="Ville"
+                        name="cityDeparture" ngModel required>
+                </div>
+            </div>
+        </div>
 
-      </div>
+        <!-- Fin formulaire adresse de depart -->
 
-  </form>
-</div>
+        <div class="p-2 m-auto text-center form-group">
+            <h5 class="p-2">Adresse d'arrivée</h5>
+            <div class="grid grid-cols-2 gap-3">
+                <div class="pb-2 col-span-2">
+                    <input type="email" class="form-control inputBlue placeholder:text-w w-full"
+                        placeholder="Numéro de voie et adresse" name="streetArrival" ngModel required>
+                </div>
+                <div class="pb-2 m-auto text-center form-group">
+                    <input type="text" class="form-control inputBlue placeholder:text-w" placeholder="Code postal"
+                        name="arrivalZipCode" ngModel required>
+                </div>
+                <div class="pb-2 m-auto text-center form-group">
+                    <input type="text" class="form-control inputBlue placeholder:text-w" placeholder="Ville"
+                        name="cityArrival" ngModel required>
+                </div>
+            </div>
+        </div>
+        <div class="p-2 text-center grid grid-cols-2 gap-3">
+            <div class="pb-2 form-group col-span-1">
+                <h5 class="p-2">Date et Heure</h5>
+                <input type="datetime-local" class="form-control inputBlue placeholder:text-w" name="date"
+                    value={{today}} min={{today}} max={{max}} ngModel required>
+            </div>
+            <div class="pb-2 form-group">
+                <h5 class="p-2">Nombre de place(s)</h5>
+                <select [(ngModel)]="ngDropdown" name="numberPlace"
+                    class="form-control inputBlue bg-w text-center h-11 w-full" ngModel required>
+                    <option value="nombre de places">Nombre de places</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="3">4</option>
+                </select>
+            </div>
+        </div>
+
+
+        <div class="pt-2 text-center">
+            <button type="submit"
+                class="py-2 text-xl buttonOrange w-40 hover:outline-offset-2 hover:outline-2 hover:outline-double hover:outline-w"
+                data-modal-toggle="defaultModal">Créer
+                le trajet</button>
+        </div>
+
+    </form>
+
 </div>
