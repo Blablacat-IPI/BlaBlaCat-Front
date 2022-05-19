@@ -1,1 +1,82 @@
-<p>addcourses works!</p>
+<div class="p-4 mx-auto mt-8 shadow-2xl bg-g rounded-xl w-max text-w">
+
+    <div class="relative">
+        <h1 class="text-3xl text-center">Créer un trajet</h1>
+
+        <button type="button" class="absolute items-center p-1 text-xl bg-transparent rounded-lg top-2 right-2 text-n hover:bg-n hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white" 
+            data-modal-toggle="defaultModal" *ngIf="afficheCroix">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>  
+        </button>
+    </div>
+
+
+    <form (ngSubmit)="addCourses(courseFrom)" #courseFrom="ngForm">
+        <div class="p-2 text-center form-group">
+            <h5 class="p-2">Adresse de départ</h5>
+            <div class="grid grid-cols-2 gap-3">
+                <div class="col-span-2 pb-2">
+                    <input type="email" class="w-full form-control inputBlue placeholder:text-w"
+                        placeholder="Numéro de voie et rue" name="streetDeparture" ngModel required>
+                </div>
+
+
+                <div class="text-center form-group">
+                    <input type="text" class="form-control inputBlue placeholder:text-w" placeholder="Code postal"
+                        name="departureZipCode" ngModel required>
+                </div>
+                <div class="pb-2 text-center form-group">
+                    <input type="text" class="form-control inputBlue placeholder:text-w" placeholder="Ville"
+                        name="cityDeparture" ngModel required>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fin formulaire adresse de depart -->
+
+        <div class="p-2 m-auto text-center form-group">
+            <h5 class="p-2">Adresse d'arrivée</h5>
+            <div class="grid grid-cols-2 gap-3">
+                <div class="col-span-2 pb-2">
+                    <input type="email" class="w-full form-control inputBlue placeholder:text-w"
+                        placeholder="Numéro de voie et adresse" name="streetArrival" ngModel required>
+                </div>
+                <div class="pb-2 m-auto text-center form-group">
+                    <input type="text" class="form-control inputBlue placeholder:text-w" placeholder="Code postal"
+                        name="arrivalZipCode" ngModel required>
+                </div>
+                <div class="pb-2 m-auto text-center form-group">
+                    <input type="text" class="form-control inputBlue placeholder:text-w" placeholder="Ville"
+                        name="cityArrival" ngModel required>
+                </div>
+            </div>
+        </div>
+        <div class="grid grid-cols-2 gap-3 p-2 text-center">
+            <div class="col-span-1 pb-2 form-group">
+                <h5 class="p-2">Date et Heure</h5>
+                <input type="datetime-local" class="form-control inputBlue placeholder:text-w" name="date"
+                    value={{today}} min={{today}} max={{max}} ngModel required>
+            </div>
+            <div class="pb-2 form-group">
+                <h5 class="p-2">Nombre de place(s)</h5>
+                <select [(ngModel)]="ngDropdown" name="numberPlace"
+                    class="w-full text-center form-control inputBlue bg-w h-11" ngModel required>
+                    <option value="nombre de places">Nombre de places</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="3">4</option>
+                </select>
+            </div>
+        </div>
+
+
+        <div class="pt-2 text-center">
+            <button type="submit"
+                class="w-40 py-2 text-xl buttonOrange hover:outline-offset-2 hover:outline-2 hover:outline-double hover:outline-w"
+                data-modal-toggle="defaultModal">Créer
+                le trajet</button>
+        </div>
+
+    </form>
+
+</div>

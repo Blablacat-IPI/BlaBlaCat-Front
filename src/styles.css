@@ -48,6 +48,13 @@ h6 {
     background-color: #33BEF3;
 } 
 
+.buttonWhite {
+    border: 2px solid white;
+    border-radius: 25px;
+    color: black;
+    background-color: white;
+} 
+
 .inputOrange {
     border: 2px solid #EC6433;
     border-radius: 25px;

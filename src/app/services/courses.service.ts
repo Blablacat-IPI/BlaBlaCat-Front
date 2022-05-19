@@ -5,9 +5,9 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class CoursesService {
+  afficheCroix:boolean = false;
 
   constructor(private http:HttpClient) { }
-
 
   getCoursesFromService(){
     return this.http.get('http://localhost:8080/Course/allValid');
