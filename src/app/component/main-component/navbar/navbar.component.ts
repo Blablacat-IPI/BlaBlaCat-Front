@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CoursesService } from 'src/app/services/courses.service';
 
 
 @Component({
@@ -10,9 +11,14 @@ import { Component, OnInit } from '@angular/core';
 export class NavbarComponent implements OnInit {
 
 
-  constructor() { }
+  constructor(private courseService: CoursesService) { }
 
   ngOnInit(): void {
+  }
+
+  afficherCroix() {
+    this.courseService.afficheCroix = true;
+    console.log(this.courseService.afficheCroix)
   }
   
 }
