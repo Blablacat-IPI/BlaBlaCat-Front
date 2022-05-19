@@ -34,12 +34,23 @@ export class CoursesService {
     return this.http.get('http://localhost:8080/Reservation/all');
   }
 
-  getPageOfMyCoursesFromService(page: any) {
+
+  // ********************************* MyReservations ************************************  
+  getPageOfMyReservationsFromService(page: any) {
     return this.http.get('http://localhost:8080/Reservation/Page?page='+page)
   }
 
-  getPageMax() {
+  getPageMaxReservations() {
     return this.http.get('http://localhost:8080/Reservation/pagemax')
+  }
+
+  // ********************************* MyCourses **************************************
+  getPageOfMyCoursesFromService(page: any) {
+    return this.http.get('http://localhost:8080/Course/Page?page='+page)
+  }
+
+  getPageMaxMyCourses() {
+    return this.http.get('http://localhost:8080/Course/pagemax')
   }
 
 }
