@@ -18,24 +18,16 @@ export class AddcoursesComponent implements OnInit {
   annee!: String;
   heure!: String;
 
-  afficheCroix!: Boolean;
-
 
   constructor(private cs: CoursesService) { }
 
   ngOnInit(): void {
-    this.afficheCroix = this.cs.afficheCroix;
-    console.log(this.afficheCroix)
-    console.log(this.cs.afficheCroix)
+
     this.today = this.dateNow();
     this.max = this.dateMax();
 
   }
 
-  ngOnDestroy(): void {
-    this.cs.afficheCroix=false;
-    console.log(this.cs.afficheCroix)
-  }
 
   addCourses(course: any) {
     this.cs.addCoursesFromService(course.value).subscribe(date => {
