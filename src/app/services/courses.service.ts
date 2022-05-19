@@ -41,4 +41,12 @@ export class CoursesService {
     return this.http.get('http://localhost:8080/Reservation/pagemax')
   }
 
+  getPageMaxOfCourses() {
+    return this.http.get('http://localhost:8080/Course/pagemax')
+  }
+
+  getPageOfCoursesFromService(page: any) {
+    return this.http.get('http://localhost:8080/Course/Page?page='+page)
+  }
+
 }
