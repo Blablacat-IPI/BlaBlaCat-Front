@@ -11,11 +11,60 @@ export class ValidateAccountComponent implements OnInit {
   deletion:boolean = false;
   usersList: any;
   users: any;
+
+  page = 0;
+  pagemax: any;
+
   constructor(private us : UsersService) { }
 
   ngOnInit(): void {
-    this.getAccount();
+    this.getPageMaxOfUsersNotValidate();
+    this.getPage0OfUsersNotValidate();
   }
+
+  getPageMaxOfUsersNotValidate() {
+    this.us.getPageMaxOfUsersNotValidateFromService().subscribe(data => {
+      this.pagemax = data;
+    })
+  }
+
+  getPage0OfUsersNotValidate() {
+    console.log("Nombre de page max : " + this.pagemax)
+    this.page = 0;
+    console.log("Page actuelle : " + this.page)
+    this.us.getPageOfUsersNotValidateFromService(this.page).subscribe(data => {
+      this.usersList = data;
+      console.log(this.usersList)
+    })
+  }
+
+  toPreviousPageOfUsersNotValidate() {
+    console.log("Nombre de page max : " + this.pagemax)
+    if (this.page > 0) {
+      this.page--;
+      console.log("Page actuelle : " + this.page)
+      this.us.getPageOfUsersNotValidateFromService(this.page).subscribe(data => {
+        this.usersList = data;
+        console.log(this.usersList)
+      })
+    } 
+  }
+
+  toNextPageOfUsersNotValidate() {
+    this.getPageMaxOfUsersNotValidate();
+    console.log("Nombre de page max : " + this.pagemax)
+    if (this.page < this.pagemax) {
+      this.page++;
+      console.log("Page actuelle : " + this.page)
+      this.us.getPageOfUsersNotValidateFromService(this.page).subscribe(data => {
+        this.usersList = data;
+        console.log(this.usersList)
+      })
+    }
+  }
+
+
+
 
   getAccount(){
     this.us.getUnvalidUsersFromService().subscribe(data => {
