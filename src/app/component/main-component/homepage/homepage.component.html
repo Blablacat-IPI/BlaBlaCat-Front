@@ -4,7 +4,7 @@
         <!-- Texte et Bouton inscription -->
         <div class="p-4 m-4 text-center ">
             <h1 class="text-w">Commencer à partager vos trajets en vous inscrivant !</h1>
-            <button class="py-2 mt-4 text-xl w-40 buttonOrange hover:outline-offset-2 hover:outline-2 hover:outline-double hover:outline-b" routerLink="signup">S'inscrire</button>
+            <button class="w-40 py-2 mt-4 text-xl buttonOrange hover:outline-offset-2 hover:outline-2 hover:outline-double hover:outline-b" routerLink="signup">S'inscrire</button>
         </div>
         <!-- Gros logo -->
         <div class="flex">
@@ -15,22 +15,20 @@
     <div>
         <h1 class="m-10 text-center text-b">Découvrir les derniers trajets</h1>
 
-        <div class="p-4 ml-40 mr-40 rounded-xl">
+        <div class="grid grid-cols-5 mx-20 my-10 h-fit rounded-xl">
             <!-- Début de la boucle ngFor -->
-            <div>
+            <div *ngFor="let course of lastCourses">
                 <!-- card -->
-                <div class="p-4 m-10 w-fit cardGrise">
+                <div class="h-full p-4 mx-4 cardGrise">
                     <h3 class="text-center">Trajet proposé par</h3>
-                    <!-- {{course.driverUsername}} -->
-                    <h3 class="text-center text-o">Bob</h3>
+                    <h3 class="text-center text-o">{{course.driverUsername}}</h3>
             
                     <div class="flex-col mt-2">
                         <div>
                             <label>Adresse de départ</label>
                         </div>
                         <div class="mt-2">
-                            <!-- {{course.streetDeparture +" "+course.cityDeparture +" "+ course.departureZipCode}} -->
-                            <button type="text" class="w-full inputBlue" disabled>80 bis route de clisson 44200 Nantes</button>
+                            <button type="text" class="w-full inputBlue" disabled>{{course.streetDeparture +", "+course.departureZipCode +" "+ course.cityDeparture}}</button>
                         </div>
                     </div>
                     <div class="flex-col mt-2">
@@ -38,8 +36,7 @@
                             <label>Adresse d'arrivée</label>
                         </div>
                         <div class="mt-2">
-                            <!-- {{course.streetArrival + " " + course.cityArrival + " " + course.arrivalZipCode}} -->
-                            <button type="text" class="w-full inputBlue" disabled>Entreprise !</button>
+                            <button type="text" class="w-full inputBlue" disabled>{{course.streetArrival + ", " + course.arrivalZipCode + " " + course.cityArrival}}</button>
                         </div>
                     </div>  
                     <div class="flex mt-2">
@@ -48,8 +45,7 @@
                                 <label>Date</label>
                             </div>
                             <div class="mt-2 mr-2">
-                                <!-- {{course.date| date:'shortDate'}} -->
-                                <button type="text" class="w-full inputBlue" disabled>26/05/2022</button>
+                                <button type="text" class="w-full inputBlue" disabled>{{course.date| date:'dd/MM/YYYY'}}</button>
                             </div>
                         </div>
                         <div class="flex-col basis-1/2">
@@ -57,18 +53,18 @@
                                 <label>Horaire</label>
                             </div>
                             <div class="mt-2 ml-2">
-                                <!-- {{course.date | date:'shortTime'}} -->
-                                <button type="text" class="w-full inputBlue" disabled>14 H 45</button>
+                                <button type="text" class="w-full inputBlue" disabled>{{course.date | date:'HH:mm'}}</button>
                             </div>
                         </div>
-                    </div>          
+                    </div>
+          
                 </div>
                 <!-- Fin card -->
             </div>
             <!-- Fin ngfor -->
         </div>
         <div class="mt-10 mb-32 text-center">
-            <button class="py-2 text-3xl w-52 buttonBlue hover:outline-offset-2 hover:outline-2 hover:outline-double hover:outline-w">Voir plus</button>
+            <button class="w-40 py-2 mt-4 text-xl buttonBlue hover:outline-offset-2 hover:outline-2 hover:outline-double hover:outline-w">Voir plus</button>
         </div>
 
     </div>

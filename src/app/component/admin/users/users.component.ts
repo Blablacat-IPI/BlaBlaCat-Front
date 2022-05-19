@@ -13,7 +13,7 @@ export class UsersComponent implements OnInit {
   constructor(private us : UsersService) { }
 
   ngOnInit(): void {
-    this.getAllUsers();
+    this.getAllValidUsers();
   }
 
   getAllUsers() {
@@ -23,17 +23,32 @@ export class UsersComponent implements OnInit {
     })
   }
 
+  getAllValidUsers() {
+    this.us.getValidUsersService().subscribe(data => {
+      this.users = data;
+      console.log(this.users);
+    });
+  }
+
   deleteUsers(userId: any) {
     this.us.deleteUsersFromService(userId).subscribe(data => {
-      this.getAllUsers()
+      this.getAllValidUsers();
       this.deletion=true;
+      setTimeout(() => {
+        this.deletion = false;
+      }, 2000);
     })
+
+    
   }
 
   softDeleteUsers(userId: any) {
     this.us.softDeleteUsersFromService(userId).subscribe(data => {
-      this.getAllUsers()
+      this.getAllValidUsers();
       this.deletionDouce=true;
+      setTimeout(() => {
+        this.deletionDouce = false;
+      }, 2000);
     })
 
     

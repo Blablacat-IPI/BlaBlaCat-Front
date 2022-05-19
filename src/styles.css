@@ -29,9 +29,9 @@ h6 {
     color: white;
     border-radius: 1rem;
 }
-.cardGrise:hover {
+/* .cardGrise:hover {
     border: 2px solid #EC6433;
-}
+} */
 
 
 .buttonOrange {
@@ -46,6 +46,13 @@ h6 {
     border-radius: 25px;
     color: white;
     background-color: #33BEF3;
+} 
+
+.buttonWhite {
+    border: 2px solid white;
+    border-radius: 25px;
+    color: black;
+    background-color: white;
 } 
 
 .inputOrange {

@@ -12,6 +12,10 @@ export class UsersService {
     return this.http.get('http://localhost:8080/Users/all');
   }
 
+  getValidUsersService(){
+    return this.http.get('http://localhost:8080/Users/allValid');
+  }
+
   getUnvalidUsersFromService(){
     return this.http.get('http://localhost:8080/Users/allUnvalid');
   }

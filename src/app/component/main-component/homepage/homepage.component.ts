@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CoursesService } from 'src/app/services/courses.service';
 
 @Component({
   selector: 'app-homepage',
@@ -6,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./homepage.component.css']
 })
 export class HomepageComponent implements OnInit {
+  lastCourses: any;
 
-  constructor() { }
+
+  constructor(private courseService : CoursesService) { }
 
   ngOnInit(): void {
+    this.courseService.getLastFiveCoursesService().subscribe(data =>{
+      this.lastCourses = data;
+      console.log(this.lastCourses);
+    });
   }
 
 }
