@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AccountComponent } from './component/account-component/account/account.component';
 
 import { AddcoursesComponent } from './component/account-component/addcourses/addcourses.component';
+import { AddpermanentcoursesComponent } from './component/account-component/addpermanentcourses/addpermanentcourses.component';
 import { MycoursesComponent } from './component/account-component/mycourses/mycourses.component';
 import { SidebarComponent } from './component/account-component/sidebar/sidebar.component';
 //admin 
@@ -21,6 +22,7 @@ import { SignUpComponent } from './component/main-component/sign-up/sign-up.comp
 const routes: Routes = [
   //Account-component
   { path: 'account', component: AccountComponent},
+  { path: 'addpermanentcourses', component: AddpermanentcoursesComponent},
   { path: 'addcourses', component: AddcoursesComponent},
   { path: 'mycourses', component: MycoursesComponent},
   { path: 'sidebar', component: SidebarComponent},
