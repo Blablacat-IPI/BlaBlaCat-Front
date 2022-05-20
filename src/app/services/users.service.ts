@@ -38,7 +38,23 @@ export class UsersService {
     //ou utiliser un get ?
   }
 
+  // ******************************** Users Not Validate ****************************************
+
+  getPageMaxOfUsersNotValidateFromService() {
+    return this.http.get('http://localhost:8080/Users/pageMaxUsersNotValidate')
+  }
+
+  getPageOfUsersNotValidateFromService(page: any) {
+    return this.http.get('http://localhost:8080/Users/pageUsersNotValidate?page='+page)
+  }
   
+  // ******************************** Users Validate ****************************************
 
+  getPageMaxOfUsersValidateFromService() {
+    return this.http.get('http://localhost:8080/Users/pageMaxUsersValidate')
+  }
 
+  getPageOfUsersValidateFromService(page: any) {
+    return this.http.get('http://localhost:8080/Users/pageUsersValidate?page='+page)
+  }
 }
