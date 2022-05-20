@@ -56,11 +56,11 @@ export class CoursesService {
 
   // ******************************** AllCourses ****************************************
   getPageMaxOfCourses() {
-    return this.http.get('http://localhost:8080/Course/pagemax')
+    return this.http.get('http://localhost:8080/Course/pageMaxAllCourses')
   }
 
   getPageOfCoursesFromService(page: any) {
-    return this.http.get('http://localhost:8080/Course/Page?page='+page)
+    return this.http.get('http://localhost:8080/Course/pageAllCourses?page='+page)
   }
 
 }

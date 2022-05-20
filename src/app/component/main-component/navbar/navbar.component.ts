@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CoursesService } from 'src/app/services/courses.service';
 
 
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
