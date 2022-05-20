@@ -8,9 +8,8 @@ import { AppComponent } from './app.component';
 
 //Account-component
 import { AccountComponent } from './component/account-component/account/account.component';
-import { AccountmodifyComponent } from './component/account-component/accountmodify/accountmodify.component';
+
 import { AddcoursesComponent } from './component/account-component/addcourses/addcourses.component';
-import { DatausersComponent } from './component/account-component/datausers/datausers.component';
 import { MycoursesComponent } from './component/account-component/mycourses/mycourses.component';
 import { SidebarComponent } from './component/account-component/sidebar/sidebar.component';
 //admin
@@ -30,9 +29,7 @@ import { SignUpComponent } from './component/main-component/sign-up/sign-up.comp
     AppComponent,
 //Account-component
     AccountComponent,
-    AccountmodifyComponent,
     AddcoursesComponent,
-    DatausersComponent,
     MycoursesComponent,
     SidebarComponent,
 //admin
