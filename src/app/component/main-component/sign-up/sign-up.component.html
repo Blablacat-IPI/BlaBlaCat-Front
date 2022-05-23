@@ -1,7 +1,7 @@
 <div class="p-4 mx-auto mt-8 shadow-2xl rounded-xl w-fit bg-g text-w">
     <h1 class="mb-4 text-center">Inscription</h1>
 
-    <form (ngSubmit)="addUsers(userFrom)" #userFrom="ngForm">
+    <form (ngSubmit)="addUsers(userForm)" #userForm="ngForm">
         <div class="p-2">
 
             <div class="flex">
@@ -42,7 +42,7 @@
             </div>
 
             <div class="m-2 text-center">
-                <button type="submit" class="py-1 text-xl buttonOrange w-40 hover:outline-offset-2 hover:outline-2 hover:outline-double hover:outline-w">S'inscrire</button>
+                <button type="submit" class="w-40 py-1 text-xl buttonOrange hover:outline-offset-2 hover:outline-2 hover:outline-double hover:outline-w">S'inscrire</button>
             </div>
 
             <div class="pt-1 text-center">
