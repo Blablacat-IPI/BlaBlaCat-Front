@@ -10,31 +10,38 @@ export class CoursesService {
 
   constructor(private http:HttpClient) { }
 
+  //Récupère tous les trajets de manière général
   getCoursesFromService(){
     return this.http.get('http://localhost:8080/Course/allValid');
   }
 
+  //Récupère les 5 derniers trajets pour la page homepage
   getLastFiveCoursesService(){
     return this.http.get('http://localhost:8080/Course/lastFive');
   }
 
+  //Permet la création d'un trajet
   addCoursesFromService(course: any) {
     return this.http.post("http://localhost:8080/Course/add", course);
   }
 
+  //Permet à un utilisateur de s'inscrire à un trajet
   addReservationFromService(reservation: any){
     return this.http.post('http://localhost:8080/Reservation/add', reservation);
   }
+
+  //Permer d'obtenir les courses que le conducteur créer
+  getMyCoursesFromService() {
+    return this.http.get('http://localhost:8080/Reservation/all');
+  }
   
+  // ********************************* Filtre ************************************ 
+
+  //Filtre par ville
   searchByCityService(city: any) {
     let keyCity = city.value.keyCity;
     return this.http.get('http://localhost:8080/Course/searchcity/' + keyCity)
   }
-
-  getMyCoursesFromService() {
-    return this.http.get('http://localhost:8080/Reservation/all');
-  }
-
 
   // ********************************* MyReservations ************************************  
   getPageOfMyReservationsFromService(page: any) {
