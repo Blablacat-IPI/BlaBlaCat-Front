@@ -81,13 +81,13 @@
         <app-addpermanentcourses *ngIf="afficherAPc"></app-addpermanentcourses>
         <app-account *ngIf="afficherA"></app-account>
       </div>
+
+      <div class="flex-1">
+        <app-validate-account *ngIf="afficherVa"></app-validate-account>
+        <app-users *ngIf="afficherU"></app-users>
+        <app-addcourses *ngIf="afficherAc"></app-addcourses>
+        <app-mycourses *ngIf="afficherMc"></app-mycourses>
+      </div>
+
+    </div>
   </aside>
-
-  <div class="flex-1">
-    <app-validate-account *ngIf="afficherVa"></app-validate-account>
-    <app-users *ngIf="afficherU"></app-users>
-    <app-addcourses *ngIf="afficherAc"></app-addcourses>
-    <app-mycourses *ngIf="afficherMc"></app-mycourses>
-  </div>
-
-</div>
