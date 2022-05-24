@@ -1,51 +1,57 @@
 <div class="divide-y">
-    
+
     <!--  **************************************   MyCourses      ***********************************************  -->
     <div class="p-4 m-4">
         <h2 class="text-b">En tant que conducteur</h2>
 
         <!-- <button type="button" class="m-2 ps-2 pe-2" (click)="getPage0Courses()">0</button> -->
-        
+
         <h3 class="text-center text-w">
-            <button type="button" class="px-2 m-2" (click)="toPreviousPageCourses()"><</button>
+            <button type="button" class="px-2 m-2" (click)="toPreviousPageCourses()">
+                &lt;</button>
             {{pageCourses}}
-            <button type="button" class="px-2 m-2" (click)="toNextPageCourses()">></button>
+            <button type="button" class="px-2 m-2" (click)="toNextPageCourses()">&gt;</button>
         </h3>
 
-                <div class="grid grid-cols-5 mx-20 my-10 h-fit rounded-xl">
-                    <!-- Boucle *ngFor-->
-                    <div *ngFor="let myCourse of myCourses">
-                        <!-- Début Card-->
-                        <div class="h-full p-4 mx-4 cardGrise">
-                            <h3 class="text-center">Trajet proposé par</h3>
-                            <h3 class="text-center text-o">{{myCourse.driverUsername}}</h3>
-                            <div class="form-group">
-                                <div class="flex-col mt-2">
-                                    <div><label>Adresse de départ</label></div>
-                                    <div class="mt-2">
-                                        <button type="text" class="w-full inputBlue" disabled>{{myCourse.streetDeparture +", "+myCourse.departureZipCode +" "+myCourse.cityDeparture}}</button>
-                                    </div>
-                                </div>
-                                <div class="flex-col mt-2">
-                                    <div><label>Adresse d'arrivée</label></div>
-                                    <div class="mt-2">
-                                        <button type="text" class="w-full inputBlue" disabled>{{myCourse.streetArrival + ", " +myCourse.arrivalZipCode+ " " +myCourse.cityArrival}}</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="pb-2 m-auto form-group ">
-                                    <div class="mt-2"><label>Date et Heure</label></div>
-                                    <div class="mt-2 mr-2">
-                                        <button type="text" class="w-full inputBlue" disabled>{{myCourse.date | date: 'dd/MM/yyyy HH:mm'}}</button>
-                                    </div>
-                                </div>
+        <div class="grid grid-cols-5 mx-20 my-10 h-fit rounded-xl">
+            <!-- Boucle *ngFor-->
+            <div *ngFor="let myCourse of myCourses">
+                <!-- Début Card-->
+                <div class="h-full p-4 mx-4 cardGrise">
+                    <h3 class="text-center">Trajet proposé par</h3>
+                    <h3 class="text-center text-o">{{myCourse.driverUsername}}</h3>
+                    <div class="form-group">
+                        <div class="flex-col mt-2">
+                            <div><label>Adresse de départ</label></div>
+                            <div class="mt-2">
+                                <button type="text" class="w-full inputBlue" disabled>
+                                    {{myCourse.streetDeparture +" ,"+myCourse.departureZipCode +"
+                                    "+myCourse.cityDeparture}}
+                                </button>
                             </div>
                         </div>
-                        <!-- Fin Card -->
+                        <div class="flex-col mt-2">
+                            <div><label>Adresse d'arrivée</label></div>
+                            <div class="mt-2">
+                                <button type="text" class="w-full inputBlue" disabled>{{myCourse.streetArrival + ", "
+                                    +myCourse.arrivalZipCode+ " " +myCourse.cityArrival}}</button>
+                            </div>
+                        </div>
                     </div>
-                    <!-- Fin de la boucle -->
+                    <div class="form-group">
+                        <div class="pb-2 m-auto form-group ">
+                            <div class="mt-2"><label>Date et Heure</label></div>
+                            <div class="mt-2 mr-2">
+                                <button type="text" class="w-full inputBlue" disabled>{{myCourse.date | date:
+                                    'dd/MM/yyyy HH:mm'}}</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                <!-- Fin Card -->
+            </div>
+            <!-- Fin de la boucle -->
+        </div>
     </div>
 
     <!--  **************************************   Fin MyCourses      ***********************************************  -->
@@ -56,49 +62,56 @@
         <h2 class="text-b">En tant que passager</h2>
 
         <!-- <button id="input1" type="button" class="m-2 ps-2 pe-2" (click)="getPage0Reservations()">0</button> -->
-        
+
         <h3 class="text-center text-w">
-            <button type="button" class="px-2 m-2" (click)="toPreviousPageReservations()"><</button>
+            <button type="button" class="px-2 m-2" (click)="toPreviousPageReservations()">
+                &lt;
+            </button>
             {{pageReservations}}
-            <button type="button" class="px-2 m-2" (click)="toNextPageReservations()">></button>
+            <button type="button" class="px-2 m-2" (click)="toNextPageReservations()">
+                &gt;
+            </button>
         </h3>
 
-                <div class="grid grid-cols-5 mx-20 my-10 h-fit rounded-xl">
-                    <!-- Boucle *ngFor-->
-                    <div *ngFor="let myReservation of myReservations">
-                        <!-- Début Card-->
-                        <div class="h-full p-4 mx-4 cardGrise">
-                            <h3 class="text-center">Trajet proposé par</h3>
-                            <h3 class="text-center text-o">{{myReservation.driverUsername}}</h3>
-                            <div class="form-group">
-                                <div class="flex-col mt-2">
-                                    <div><label>Adresse de départ</label></div>
-                                    <div class="mt-2">
-                                        <button type="text" class="w-full inputBlue" disabled>{{myReservation.displayDepartureAddress}}</button>
-                                    </div>
-                                </div>
-                                <div class="flex-col mt-2">
-                                    <div><label>Adresse d'arrivée</label></div>
-                                    <div class="mt-2">
-                                        <button type="text" class="w-full inputBlue" disabled>{{myReservation.displayArrivalAddress}}</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="pb-2 m-auto form-group ">
-                                    <div class="mt-2"><label>Date et Heure</label></div>
-                                    <div class="mt-2 mr-2">
-                                        <button type="text" class="w-full inputBlue" disabled>{{myReservation.displayDate | date: 'dd/MM/yyyy HH:mm'}}</button>
-                                    </div>
-                                </div>
+        <div class="grid grid-cols-5 mx-20 my-10 h-fit rounded-xl">
+            <!-- Boucle *ngFor-->
+            <div *ngFor="let myReservation of myReservations">
+                <!-- Début Card-->
+                <div class="h-full p-4 mx-4 cardGrise">
+                    <h3 class="text-center">Trajet proposé par</h3>
+                    <h3 class="text-center text-o">{{myReservation.username}}</h3>
+                    <div class="form-group">
+                        <div class="flex-col mt-2">
+                            <div><label>Adresse de départ</label></div>
+                            <div class="mt-2">
+                                <button type="text" class="w-full inputBlue"
+                                    disabled>{{myReservation.displayDepartureAddress}}</button>
                             </div>
                         </div>
-                        <!-- Fin Card -->
+                        <div class="flex-col mt-2">
+                            <div><label>Adresse d'arrivée</label></div>
+                            <div class="mt-2">
+                                <button type="text" class="w-full inputBlue"
+                                    disabled>{{myReservation.displayArrivalAddress}}</button>
+                            </div>
+                        </div>
                     </div>
-                    <!-- Fin de la boucle -->
+                    <div class="form-group">
+                        <div class="pb-2 m-auto form-group ">
+                            <div class="mt-2"><label>Date et Heure</label></div>
+                            <div class="mt-2 mr-2">
+                                <button type="text" class="w-full inputBlue" disabled>{{myReservation.displayDate |
+                                    date: 'dd/MM/yyyy HH:mm'}}</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                <!-- Fin Card -->
+            </div>
+            <!-- Fin de la boucle -->
+        </div>
     </div>
 
-<!--  **************************************   Fin MyReservations     ***********************************************  -->
+    <!--  **************************************   Fin MyReservations     ***********************************************  -->
 
 </div>
