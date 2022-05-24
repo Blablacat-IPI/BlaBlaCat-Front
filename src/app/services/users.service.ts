@@ -13,6 +13,14 @@ export class UsersService {
     return this.http.get('http://localhost:8080/Users/all');
   }
 
+  getUserFromService(userId: any){
+    return this.http.get('http://localhost:8080/Users/getById?id='+ userId);
+  }
+
+  updateProfilService(updateProfil: any){
+    return this.http.post('http://localhost:8080/Users/updateUser', updateProfil);
+  }
+
   //Permet d'obtenir la liste des users validée
   getValidUsersService(){
     return this.http.get('http://localhost:8080/Users/allValid');

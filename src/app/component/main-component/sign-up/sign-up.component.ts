@@ -16,7 +16,7 @@ export class SignUpComponent implements OnInit {
   addUsers(user: any) {
     console.log(user.value)
     this.us.addUsersFromService(user.value).subscribe(data => {
-      console.log('Users Enregistré')
+      console.log('Users Enregistré');
     })
   }
 

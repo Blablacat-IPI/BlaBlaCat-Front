@@ -1,1 +1,54 @@
-<p>Bonjour</p>
+<div class="p-4 mx-auto mt-8 shadow-2xl rounded-xl w-fit bg-g text-w" *ngIf="loaded">
+    <h1 class="mb-4 text-center">Mon profil</h1>
+
+    <form [formGroup]="profilForm" aria-disabled="update">
+        <div class="p-2">
+
+            <div class="flex">
+                <div class="p-2 m-auto text-center form-group">
+                    <input type="text" class="form-control inputBlue placeholder:text-w" formControlName="username">
+                </div>
+                <div class="p-2 m-auto text-center form-group">
+                    <input type="text" class="form-control inputBlue placeholder:text-w" formControlName="idCompany">
+                </div>
+            </div>
+
+            <div class="flex">
+                <div class="p-2 m-auto text-center form-group">
+                    <input type="text" class="form-control inputBlue placeholder:text-w" formControlName="lastName">
+                </div>
+                <div class="p-2 m-auto text-center form-group">
+                    <input type="text" class="form-control inputBlue placeholder:text-w" formControlName="firstName">
+                </div>
+            </div>
+
+            <!-- <h6 class="pt-2 pb-1 pl-2">Mot de passe de 8 caractères obligatoires (1 Maj, 1 Min, 1 Chiffre et 1 caractère spécial obligatoire)</h6> -->
+            
+            <!-- <div class="flex">
+                <div class="p-2 m-auto text-center form-group">
+                    <input type="password" class="form-control inputBlue placeholder:text-w" placeholder="Mot de passe" name="password" ngModel required>
+                </div>
+                <div class="p-2 m-auto text-center form-group">
+                    <input type="password" class="form-control inputBlue placeholder:text-w" placeholder="Confirmation du mot de passe" name="passwordVerified" ngModel required>
+                </div>
+            </div> -->
+
+            <div class="p-2 m-auto text-center form-group">
+                <input type="email" class="w-full form-control inputBlue placeholder:text-w" formControlName="email">
+            </div>
+            <!-- <div class="p-2 m-auto text-center form-group">
+                <input type="email" class="w-full form-control inputBlue placeholder:text-w" placeholder="Confirmation de l'adresse email" name="emailVerified" ngModel required>
+            </div> -->
+
+            <div class="m-2 text-center">
+                <button type="submit" 
+                class="w-40 py-1 text-xl buttonOrange hover:outline-offset-2 hover:outline-2 hover:outline-double hover:outline-w" 
+                (click)="onUpdateForm()" *ngIf="!update">Modifier mon profil</button>
+            </div>            <div class="m-2 text-center">
+                <button type="submit" 
+                class="w-40 py-1 text-xl buttonOrange hover:outline-offset-2 hover:outline-2 hover:outline-double hover:outline-w" 
+                (click)="onSubmitForm()" *ngIf="update" [disabled]="profilForm.invalid">Enregistrer</button>
+            </div>
+        </div>
+    </form>
+</div>
