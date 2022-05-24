@@ -11,6 +11,8 @@ export class SidebarComponent implements OnInit {
   afficherU:boolean = false
   afficherAc:boolean = false
   afficherMc:boolean = false
+  afficherAPc:boolean = false
+  afficherA:boolean = false
 
   constructor() { }
 
@@ -28,6 +30,8 @@ export class SidebarComponent implements OnInit {
     this.afficherAc=false;
     this.afficherU=false;
     this.afficherMc=false;
+    this.afficherAPc=false;
+    this.afficherA=false;
   }
 
   afficherUsers() {
@@ -36,6 +40,8 @@ export class SidebarComponent implements OnInit {
     this.afficherAc=false;
     this.afficherVa=false;
     this.afficherMc=false;
+    this.afficherAPc=false;
+    this.afficherA=false;
   }
 
   afficherAddCourses() {
@@ -44,11 +50,35 @@ export class SidebarComponent implements OnInit {
     this.afficherVa=false;
     this.afficherU=false;
     this.afficherMc=false;
+    this.afficherAPc=false;
+    this.afficherA=false;
   }
 
   afficherMyCourses() {
     this.afficherMc=true;
 
+    this.afficherAc=false;
+    this.afficherVa=false;
+    this.afficherU=false;
+    this.afficherAPc=false;
+    this.afficherA=false;
+  }
+
+  afficherAddPermanentCourses() {
+    this.afficherAPc=true;
+
+    this.afficherMc=false;
+    this.afficherAc=false;
+    this.afficherVa=false;
+    this.afficherU=false;
+    this.afficherA=false;
+  }
+
+  afficherAccount() {
+    this.afficherA=true;
+
+    this.afficherAPc=false;
+    this.afficherMc=false;
     this.afficherAc=false;
     this.afficherVa=false;
     this.afficherU=false;

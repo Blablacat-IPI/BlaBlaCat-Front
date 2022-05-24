@@ -8,9 +8,8 @@ import { AppComponent } from './app.component';
 
 //Account-component
 import { AccountComponent } from './component/account-component/account/account.component';
-import { AccountmodifyComponent } from './component/account-component/accountmodify/accountmodify.component';
+
 import { AddcoursesComponent } from './component/account-component/addcourses/addcourses.component';
-import { DatausersComponent } from './component/account-component/datausers/datausers.component';
 import { MycoursesComponent } from './component/account-component/mycourses/mycourses.component';
 import { SidebarComponent } from './component/account-component/sidebar/sidebar.component';
 //admin
@@ -22,6 +21,7 @@ import { HomepageComponent } from './component/main-component/homepage/homepage.
 import { LoginComponent } from './component/main-component/login/login.component';
 import { NavbarComponent } from './component/main-component/navbar/navbar.component';
 import { SignUpComponent } from './component/main-component/sign-up/sign-up.component';
+import { AddpermanentcoursesComponent } from './component/account-component/addpermanentcourses/addpermanentcourses.component';
 
 
 
@@ -30,9 +30,8 @@ import { SignUpComponent } from './component/main-component/sign-up/sign-up.comp
     AppComponent,
 //Account-component
     AccountComponent,
-    AccountmodifyComponent,
+    AddpermanentcoursesComponent,
     AddcoursesComponent,
-    DatausersComponent,
     MycoursesComponent,
     SidebarComponent,
 //admin
@@ -43,7 +42,8 @@ import { SignUpComponent } from './component/main-component/sign-up/sign-up.comp
     HomepageComponent,
     LoginComponent,
     NavbarComponent,
-    SignUpComponent
+    SignUpComponent,
+    AddpermanentcoursesComponent
   ],
   imports: [
     BrowserModule,
