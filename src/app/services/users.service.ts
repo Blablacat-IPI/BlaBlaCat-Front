@@ -25,6 +25,10 @@ export class UsersService {
     return this.http.get('http://localhost:8080/Users/usernameCheckVacant?username=' + username);
   }
 
+  checkEmailService(email: any){
+    return this.http.get('http://localhost:8080/Users/emailCheckVacant?email=' + email);
+  }
+
   //Permet d'obtenir la liste des users validée
   getValidUsersService(){
     return this.http.get('http://localhost:8080/Users/allValid');

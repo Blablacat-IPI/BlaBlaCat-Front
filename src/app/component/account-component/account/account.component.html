@@ -7,10 +7,14 @@
             <div class="flex">
                 <div class="p-2 m-auto text-center form-group">
                     <input type="text" class="form-control placeholder:text-w" [ngClass]="{'inputOrange': !usernameCheck, 'inputBlue': usernameCheck}" formControlName="username">
+                    
                 </div>
                 <div class="p-2 m-auto text-center form-group">
                     <input type="text" class="form-control inputBlue placeholder:text-w" formControlName="idCompany">
                 </div>
+            </div>
+            <div class="p-2 errorWarning" *ngIf="!usernameCheck">
+                <span class="block sm:inline">Ce pseudo est déjà utilisé</span>
             </div>
 
             <div class="flex">
@@ -34,12 +38,18 @@
             </div> -->
 
             <div class="p-2 m-auto text-center form-group">
-                <input type="email" class="w-full form-control inputBlue placeholder:text-w" formControlName="email">
+                <input type="email" class="w-full form-control placeholder:text-w" [ngClass]="{'inputOrange': !emailVacant, 'inputBlue': emailVacant}" formControlName="email">
+            </div>
+            <div class="p-2 errorWarning" *ngIf="!emailVacant">
+                <span class="block sm:inline">Cet email déjà utilisé</span>
             </div>
 
-            <!-- <div class="p-2 m-auto text-center form-group" *ngIf="update">
-                <input type="email" class="w-full form-control inputBlue placeholder:text-w" formControlName="emailVerified">
-            </div> -->
+            <div class="p-2 m-auto text-center form-group" *ngIf="update && !emailCheck">
+                <input type="email" class="w-full form-control placeholder:text-w" [ngClass]="{'inputOrange': !emailCheck, 'inputBlue': emailCheck}" formControlName="emailVerified">
+            </div>
+            <div class="p-2 errorWarning" *ngIf="!emailCheck && emailVacant">
+                <span class="block sm:inline">Vous devez confirmer le nouvel email</span>
+            </div>
 
             <div class="m-2 text-center">
                 <button type="submit"
