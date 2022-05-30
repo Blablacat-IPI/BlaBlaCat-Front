@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { CustomvalidationService } from 'src/app/services/customvalidation.service';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
@@ -13,14 +14,14 @@ export class AccountComponent implements OnInit {
   user!: any;
   updateUser!: any;
   profilForm!: FormGroup;
+  usernameCheck: any = true;
 
-  constructor(private formBuilder: FormBuilder, private userService : UsersService) {}
+  constructor(private formBuilder: FormBuilder, private customValidator: CustomvalidationService, private userService : UsersService) {}
 
   ngOnInit(): void {
         //User 10 par default à changer
         this.userService.getUserFromService(10).subscribe(data => {
           this.user = data;
-          console.log(this.user);
 
           //Permet de lancer qu'une fois la requête finie
           this.initForm();
@@ -34,15 +35,37 @@ export class AccountComponent implements OnInit {
 
   initForm(){
     this.profilForm = this.formBuilder.group({
+      //username: [this.user.username, [Validators.required, this.customValidator.usernameValidator.bind(this.customValidator, this.user.username)]],
       username: [this.user.username, [Validators.required]],
       idCompany: [this.user.idCompany],
       lastName: [this.user.lastName, [Validators.required]],
       firstName: [this.user.firstName, [Validators.required]],
       email: [this.user.email, [Validators.required]]
+    }, {
+      updateOn: 'blur'
     })
+
+    this.checkUsername();
 
     //Form bloqué tant que le bouton "modifier mon profil" n'est pas cliqué
     this.profilForm.disable();
+  }
+
+  checkUsername(){
+    this.profilForm.get('username')?.valueChanges.subscribe(value => {
+      let formUsername: String = this.profilForm.get('username')?.value;
+      
+      //Ne compare que si l'input est différent de l'Username actuel de l'user
+      if(this.user.username != formUsername){
+        this.userService.checkUsernameService(value).subscribe(data => {
+          this.usernameCheck = data;
+          //si False, bouton désactivé (html)
+        })
+      } else {
+        this.usernameCheck = true;
+      }
+      
+    })
   }
 
   onUpdateForm(){

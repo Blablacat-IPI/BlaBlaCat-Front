@@ -21,6 +21,10 @@ export class UsersService {
     return this.http.post('http://localhost:8080/Users/updateUser', updateProfil);
   }
 
+  checkUsernameService(username: any){
+    return this.http.get('http://localhost:8080/Users/usernameCheckVacant?username=' + username);
+  }
+
   //Permet d'obtenir la liste des users validée
   getValidUsersService(){
     return this.http.get('http://localhost:8080/Users/allValid');
