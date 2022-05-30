@@ -1,7 +1,7 @@
 <div class="text-w">
     <h1 class="mt-4 text-center text-o">Liste des trajets :</h1>
 
-    <div class="m-4 text-center">
+    <div class="mx-4 mt-4 mb-6 text-center">
         <button class="py-1 text-xl w-52 buttonBlue hover:outline-offset-2 hover:outline-2 hover:outline-double hover:outline-w" (click)="afficherRecherche()">Recherche</button>
     </div>
     
@@ -16,11 +16,14 @@
         </div>
     </form>
 
-    <h3 class="text-center text-w">
-        <button type="button" class="px-2 m-2" (click)="toPreviousPageOfCourses()"><</button>
-        {{page}}
-        <button type="button" class="px-2 m-2" (click)="toNextPageOfCourses()">></button>
-    </h3>
+    <div class="p-2 mx-auto mt-6 text-center w-fit rounded-xl pagination">
+        <h3 class="text-3xl text-w">
+            <button type="button" class="px-2 m-2" (click)="toPreviousPageOfCourses()"><i class=" fa-solid fa-circle-chevron-left"></i></button>
+            {{page}}
+            <button type="button" class="px-2 m-2" (click)="toNextPageOfCourses()"><i class=" fa-solid fa-circle-chevron-right"></i></button>
+        </h3>
+    </div>
+
 
     <div class="grid grid-cols-4 gap-8 mx-20 my-10 h-fit rounded-xl">
 
