@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CoursesService } from 'src/app/services/courses.service';
-
-
+import { Router, RouterLink } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,11 +9,29 @@ import { CoursesService } from 'src/app/services/courses.service';
 })
 
 export class NavbarComponent implements OnInit {
+  signuptoggle:boolean = true
+  logintoggle:boolean = true
+  accounttoggle:boolean = false
+  addcoursestoggle:boolean = false
 
+  username = ''
+  role = ''
+  id = ''
 
-  constructor() { }
+  constructor(private cookie: CookieService, private router: Router) { }
 
   ngOnInit(): void {
+    this.username = this.cookie.get('CookieCatUsername')
+    this.role = this.cookie.get('CookieCatRole')
+    this.id = this.cookie.get('CookieCatId')
+
+    if (this.username != '' && this.role != '' && this.id != ''){
+      this.signuptoggle = false
+      this.logintoggle = false
+      this.accounttoggle = true
+      this.addcoursestoggle = true
+    }
   }
+
 
 }

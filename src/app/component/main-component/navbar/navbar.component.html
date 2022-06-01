@@ -13,19 +13,24 @@
       <button class="p-2 nav-link hover:underline hover:underline-offset-8 hover:decoration-o" routerLink="courses">Tous
         les trajets</button>
     </li>
-    <li class="flex items-center p-10 nav-item">
+
+    <!-- Ngif  -->
+
+    <li class="flex items-center p-10 nav-item" *ngIf="signuptoggle">
       <button class="p-2 nav-link hover:underline hover:underline-offset-8 hover:decoration-o"
         routerLink="signup">Inscription</button>
     </li>
-    <li class="flex items-center p-10 nav-item">
+    <li class="flex items-center p-10 nav-item" *ngIf="logintoggle">
       <button class="p-2 nav-link hover:underline hover:underline-offset-8 hover:decoration-o"
         routerLink="login">Connexion</button>
     </li>
-    <li class="flex items-center p-10 nav-item">
-      <button class="p-2 nav-link hover:underline hover:underline-offset-8 hover:decoration-o" routerLink="sidebar">Mon
-        Compte</button>
+
+
+    <li class="flex items-center p-10 nav-item" *ngIf="accounttoggle">
+      <button class="p-2 nav-link hover:underline hover:underline-offset-8 hover:decoration-o" 
+        routerLink="sidebar">Mon Compte</button>
     </li>
-    <li class="flex items-center p-10 nav-item">
+    <li class="flex items-center p-10 nav-item" *ngIf="addcoursestoggle">
       <button class="p-2 ease-in-out hover:decoration-o hover:underline-offset-8 hover:underline" type="button"
         data-modal-toggle="defaultModal"><i class="fa-regular fa-calendar-plus"></i> Créer un trajet</button>
     </li>
