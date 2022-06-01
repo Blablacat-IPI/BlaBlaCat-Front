@@ -2,13 +2,17 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+<<<<<<< HEAD
+=======
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CookieService } from 'ngx-cookie-service';
+>>>>>>> eaf15dbd30df8dfb7ee694956e9dbb3a48397f06
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 //Account-component
 import { AccountComponent } from './component/account-component/account/account.component';
-
 import { AddcoursesComponent } from './component/account-component/addcourses/addcourses.component';
 import { MycoursesComponent } from './component/account-component/mycourses/mycourses.component';
 import { SidebarComponent } from './component/account-component/sidebar/sidebar.component';
@@ -22,7 +26,8 @@ import { LoginComponent } from './component/main-component/login/login.component
 import { NavbarComponent } from './component/main-component/navbar/navbar.component';
 import { SignUpComponent } from './component/main-component/sign-up/sign-up.component';
 import { AddpermanentcoursesComponent } from './component/account-component/addpermanentcourses/addpermanentcourses.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 
 
 
@@ -54,7 +59,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

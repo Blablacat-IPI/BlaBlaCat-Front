@@ -29,6 +29,14 @@ export class UsersService {
     return this.http.get('http://localhost:8080/Users/emailCheckVacant?email=' + email);
   }
 
+  loginService(email: any, password: any){
+    return this.http.get('http://localhost:8080/Auth/Login?email='+email+'&password='+password);
+  }
+
+  getUserCookieFromService(email: any){
+    return this.http.get('http://localhost:8080/Auth/Usercookie?email='+email)
+  }
+
   //Permet d'obtenir la liste des users validée
   getValidUsersService(){
     return this.http.get('http://localhost:8080/Users/allValid');
