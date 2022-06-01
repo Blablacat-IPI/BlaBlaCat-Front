@@ -18,26 +18,25 @@ export class AccountComponent implements OnInit {
   emailCheck: any = true;
   emailVacant: any = true;
 
-  constructor(private formBuilder: FormBuilder, private customValidator: CustomvalidationService, private userService : UsersService) {}
+  constructor(private formBuilder: FormBuilder, private customValidator: CustomvalidationService, private userService: UsersService) { }
 
   ngOnInit(): void {
-        //User 10 par default à changer
-        this.userService.getUserFromService(10).subscribe(data => {
-          this.user = data;
+    //User 10 par default à changer
+    this.userService.getUserFromService(10).subscribe(data => {
+      this.user = data;
 
-          //Permet de lancer qu'une fois la requête finie
-          this.initForm();
+      //Permet de lancer qu'une fois la requête finie
+      this.initForm();
 
-          //le html ne se charge pas tant que loaded = false
-          //laisse le temps à la requête http de se faire
-          this.loaded = true;
-        });
+      //le html ne se charge pas tant que loaded = false
+      //laisse le temps à la requête http de se faire
+      this.loaded = true;
+    });
 
   }
 
-  initForm(){
+  initForm() {
     this.profilForm = this.formBuilder.group({
-      //username: [this.user.username, [Validators.required, this.customValidator.usernameValidator.bind(this.customValidator, this.user.username)]],
       username: [this.user.username, [Validators.required]],
       idCompany: [this.user.idCompany],
       lastName: [this.user.lastName, [Validators.required]],
@@ -56,80 +55,75 @@ export class AccountComponent implements OnInit {
     this.profilForm.disable();
   }
 
-  checkUsername(){
+  checkUsername() {
     this.profilForm.get('username')?.valueChanges.subscribe(value => {
       let formUsername: String = this.profilForm.get('username')?.value;
-      
+
       //true si modification par l'user
-      if(this.profilForm.get('username')?.dirty){
-        console.log("inside");
+      if (this.profilForm.get('username')?.dirty) {
 
         //Ne compare que si l'input est différent de l'Username actuel de l'user
-        if(this.user.username != formUsername){
+        if (this.user.username != formUsername) {
           this.userService.checkUsernameService(formUsername).subscribe(data => {
             this.usernameCheck = data;
             //si False, bouton désactivé (html)
           })
         } else {
-          console.log('username identique');
           this.usernameCheck = true;
         }
       }
 
-      
+
     })
   }
 
-  checkEmail(){
+  checkEmail() {
     this.profilForm.get('email')?.valueChanges.subscribe(value => {
       let formEmail: String = this.profilForm.get('email')?.value;
       let formEmailConfirm: String = this.profilForm.get('emailVerified')?.value;
-      
-      //Ne compare que si l'input est différent de l'email actuel de l'user
-      if(this.user.email != formEmail){
-        this.emailCheck = false;
-        this.profilForm.controls["emailVerified"].setValidators(Validators.required);
-        this.userService.checkEmailService(formEmail).subscribe(data => {
-             this.emailVacant = data;
-        })
-      } else {
-        this.emailCheck = true;
-        this.profilForm.controls["emailVerified"].clearValidators();
-        console.log('email identique');
+
+      //Si User modifie
+      if (this.profilForm.get('email')?.dirty) {
+        //Ne compare que si l'input est différent de l'email actuel de l'user
+        if (this.user.email != formEmail) {
+          this.emailCheck = false;
+          this.profilForm.controls["emailVerified"].setValidators(Validators.required);
+          this.userService.checkEmailService(formEmail).subscribe(data => {
+            this.emailVacant = data;
+          })
+        } else {
+          this.emailCheck = true;
+          this.profilForm.controls["emailVerified"].clearValidators();
+        }
       }
-      
+
     })
   }
 
-  checkConfirmEmail(){
+  checkConfirmEmail() {
     this.profilForm.get('emailVerified')?.valueChanges.subscribe(value => {
       let formEmail: String = this.profilForm.get('email')?.value;
       let formEmailConfirm: String = this.profilForm.get('emailVerified')?.value;
 
-      console.log(formEmail);
-      console.log(formEmailConfirm);
-
-      if(formEmail == formEmailConfirm){
+      if (formEmail == formEmailConfirm) {
         this.emailCheck = true;
       }
 
     })
-    
+
   }
 
-  onUpdateForm(){
+  onUpdateForm() {
     this.update = true;
     this.profilForm.enable();
-    
+
     this.profilForm.get('idCompany')?.disable();//garde IdCompany bloqué
 
   }
 
-  onSubmitForm(){
+  onSubmitForm() {
     this.updateUserDto();
-
-    console.log("dans submit");
-    this.userService.updateProfilService(this.user).subscribe(()=>{
+    this.userService.updateProfilService(this.user).subscribe(() => {
       console.log("requête envoyée !");
     });
 
@@ -137,7 +131,7 @@ export class AccountComponent implements OnInit {
     this.profilForm.disable();
   }
 
-  updateUserDto(){
+  updateUserDto() {
     this.updateUser = this.profilForm.value;
 
     this.user.username = this.updateUser.username;
