@@ -2,13 +2,13 @@
   <h1 class="mb-4 text-center">Connexion</h1>
 
   <!-- *******************Début formulaire******************* -->
-  <form>
+  <form (ngSubmit)="login(loginForm)" #loginForm="ngForm">
 
     <!-- Pseudo ou email input -->
     <div class="flex">
       <div class="p-2 m-auto text-center form-group">
-        <input type="email" class="form-control inputBlue placeholder:text-w w-80" name="username" ngModel required
-          placeholder="Pseudo ou adresse email" />
+        <input type="email" class="form-control inputBlue placeholder:text-w w-80" name="email" ngModel required
+          placeholder="Adresse email" />
       </div>
     </div>
     <!-- Password input -->
@@ -21,8 +21,8 @@
 
     <!-- valider identifiants -->
     <div class="m-2 text-center">
-      <button type="button"
-        class="p-2 text-xl mb-2 buttonBlue w-40 hover:outline-offset-2 hover:outline-2 hover:outline-double hover:outline-w">Se
+      <button type="submit"
+        class="w-40 p-2 mb-2 text-xl buttonBlue hover:outline-offset-2 hover:outline-2 hover:outline-double hover:outline-w">Se
         connecter</button>
     </div>
 
