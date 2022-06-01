@@ -43,7 +43,7 @@ export class AccountComponent implements OnInit {
       lastName: [this.user.lastName, [Validators.required]],
       firstName: [this.user.firstName, [Validators.required]],
       email: [this.user.email, [Validators.required]],
-      emailVerified: ["Confirmation nouveau email", [Validators.required]]
+      emailVerified: ['', [Validators.required]]
     }, {
       updateOn: 'blur',
     })
