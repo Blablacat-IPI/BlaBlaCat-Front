@@ -11,9 +11,12 @@ import { UsersService } from 'src/app/services/users.service';
 export class AccountComponent implements OnInit {
   update = false;
   loaded = false;
+
   user!: any;
   updateUser!: any;
   profilForm!: FormGroup;
+
+  allValid: any = true;
   usernameCheck: any = true;
   emailCheck: any = true;
   emailVacant: any = true;
@@ -71,6 +74,13 @@ export class AccountComponent implements OnInit {
         } else {
           this.usernameCheck = true;
         }
+
+        if(!this.usernameCheck){
+          this.allValid = false;
+        } else {
+          this.allValid = true;
+        }
+
       }
 
 
@@ -84,23 +94,28 @@ export class AccountComponent implements OnInit {
 
       //Si User modifie
       if (this.profilForm.get('email')?.dirty) {
+
         //Ne compare que si l'input est différent de l'email actuel de l'user
         if (this.user.email != formEmail) {
           this.emailCheck = false;
           this.profilForm.controls["emailVerified"].setValidators(Validators.required);
+          
           this.userService.checkEmailService(formEmail).subscribe(data => {
             this.emailVacant = data;
           })
+
         } else {
           this.emailCheck = true;
           this.profilForm.controls["emailVerified"].clearValidators();
         }
+
       }
 
     })
   }
 
   checkConfirmEmail() {
+
     this.profilForm.get('emailVerified')?.valueChanges.subscribe(value => {
       let formEmail: String = this.profilForm.get('email')?.value;
       let formEmailConfirm: String = this.profilForm.get('emailVerified')?.value;
