@@ -74,6 +74,12 @@ h6 {
     font-size: 85%;
 }
 
+<<<<<<< HEAD
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+=======
 .errorWarning {
     border: 2px solid rgb(241, 48, 48);
     border-radius: 25px;
@@ -81,3 +87,4 @@ h6 {
     background-color: rgb(221, 198, 198);
 }
 
+>>>>>>> 0544a4a520b47c48a8632b50bd053dd3dde3bd83
