@@ -43,7 +43,7 @@ export class AccountComponent implements OnInit {
       lastName: [this.user.lastName, [Validators.required]],
       firstName: [this.user.firstName, [Validators.required]],
       email: [this.user.email, [Validators.required]],
-      emailVerified: ['', [Validators.required]]
+      emailVerified: ['']
     }, {
       updateOn: 'blur',
     })
@@ -60,15 +60,22 @@ export class AccountComponent implements OnInit {
     this.profilForm.get('username')?.valueChanges.subscribe(value => {
       let formUsername: String = this.profilForm.get('username')?.value;
       
-      //Ne compare que si l'input est différent de l'Username actuel de l'user
-      if(this.user.username != formUsername){
-        this.userService.checkUsernameService(formUsername).subscribe(data => {
-          this.usernameCheck = data;
-          //si False, bouton désactivé (html)
-        })
-      } else {
-        this.usernameCheck = true;
+      //true si modification par l'user
+      if(this.profilForm.get('username')?.dirty){
+        console.log("inside");
+
+        //Ne compare que si l'input est différent de l'Username actuel de l'user
+        if(this.user.username != formUsername){
+          this.userService.checkUsernameService(formUsername).subscribe(data => {
+            this.usernameCheck = data;
+            //si False, bouton désactivé (html)
+          })
+        } else {
+          console.log('username identique');
+          this.usernameCheck = true;
+        }
       }
+
       
     })
   }
@@ -77,17 +84,18 @@ export class AccountComponent implements OnInit {
     this.profilForm.get('email')?.valueChanges.subscribe(value => {
       let formEmail: String = this.profilForm.get('email')?.value;
       let formEmailConfirm: String = this.profilForm.get('emailVerified')?.value;
-
-      this.emailCheck = false;
-
       
       //Ne compare que si l'input est différent de l'email actuel de l'user
       if(this.user.email != formEmail){
+        this.emailCheck = false;
+        this.profilForm.controls["emailVerified"].setValidators(Validators.required);
         this.userService.checkEmailService(formEmail).subscribe(data => {
              this.emailVacant = data;
         })
       } else {
         this.emailCheck = true;
+        this.profilForm.controls["emailVerified"].clearValidators();
+        console.log('email identique');
       }
       
     })
@@ -97,11 +105,14 @@ export class AccountComponent implements OnInit {
     this.profilForm.get('emailVerified')?.valueChanges.subscribe(value => {
       let formEmail: String = this.profilForm.get('email')?.value;
       let formEmailConfirm: String = this.profilForm.get('emailVerified')?.value;
+
       console.log(formEmail);
       console.log(formEmailConfirm);
+
       if(formEmail == formEmailConfirm){
         this.emailCheck = true;
       }
+
     })
     
   }
@@ -109,11 +120,15 @@ export class AccountComponent implements OnInit {
   onUpdateForm(){
     this.update = true;
     this.profilForm.enable();
+    
     this.profilForm.get('idCompany')?.disable();//garde IdCompany bloqué
+
   }
 
   onSubmitForm(){
     this.updateUserDto();
+
+    console.log("dans submit");
     this.userService.updateProfilService(this.user).subscribe(()=>{
       console.log("requête envoyée !");
     });
