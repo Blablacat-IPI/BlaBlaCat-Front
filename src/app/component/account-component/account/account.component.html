@@ -26,17 +26,6 @@
                 </div>
             </div>
 
-            <!-- <h6 class="pt-2 pb-1 pl-2" *ngIf="update">Mot de passe de 8 caractères obligatoires (1 Maj, 1 Min, 1 Chiffre et 1 caractère spécial obligatoire)</h6>
-            
-            <div class="flex" *ngIf="update">
-                <div class="p-2 m-auto text-center form-group">
-                    <input type="password" class="form-control inputBlue placeholder:text-w" formControlName="password" ngModel required>
-                </div>
-                <div class="p-2 m-auto text-center form-group">
-                    <input type="password" class="form-control inputBlue placeholder:text-w" formControlName="passwordVerified" ngModel required>
-                </div>
-            </div> -->
-
             <div class="p-2 m-auto text-center form-group">
                 <input type="email" class="w-full form-control placeholder:text-w" [ngClass]="{'inputOrange': !emailVacant, 'inputBlue': emailVacant}" formControlName="email">
             </div>
@@ -44,12 +33,33 @@
                 <span class="block sm:inline">Cet email déjà utilisé</span>
             </div>
 
-            <div class="p-2 m-auto text-center form-group" *ngIf="update && !emailCheck">
+            <div class="p-2 m-auto text-center form-group" *ngIf="update && !emailCheck || (profilForm.get('emailVerified')?.dirty)">
                 <input type="email" class="w-full form-control placeholder:text-w" [ngClass]="{'inputOrange': !emailCheck, 'inputBlue': emailCheck}" formControlName="emailVerified" placeholder="confirmation email">
             </div>
             <div class="p-2 errorWarning" *ngIf="!emailCheck && emailVacant">
                 <span class="block sm:inline">Vous devez confirmer le nouvel email</span>
             </div>
+
+            
+            
+            <h6 class="pt-2 pb-1 pl-2" *ngIf="update">Mot de passe de 8 caractères obligatoires (1 Maj, 1 Min, 1 Chiffre et 1 caractère spécial obligatoire)</h6>
+            
+            <div class="p-2 m-auto text-center form-group"*ngIf="update">
+                <input type="password" class="w-full form-control placeholder:text-w" [ngClass]="{'inputOrange': passwordError, 'inputBlue': !passwordError}" formControlName="password" placeholder="Modifer le mot de passe">
+            </div>
+            <div class="p-2 errorWarning" *ngIf="passwordError">
+                <span class="block sm:inline">1 Maj, 1 Min, 1 Chiffre et 1 caractère spécial obligatoire</span>
+            </div>
+            
+            <div class="p-2 m-auto text-center form-group" *ngIf="!passwordConfirm || (profilForm.get('passwordVerified')?.dirty)">
+                <input type="password" class="w-full form-control inputBlue placeholder:text-w" [ngClass]="{'inputOrange': !passwordConfirm, 'inputBlue': passwordConfirm}" formControlName="passwordVerified" placeholder="Confirmation du mot de passe">
+            </div>
+            <div class="p-2 errorWarning" *ngIf="confirmError">
+                <span class="block sm:inline">Doit être identique au nouveau mot de passe</span>
+            </div>
+            
+
+
 
             <div class="m-2 text-center">
                 <button type="submit"
