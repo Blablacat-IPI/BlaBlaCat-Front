@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
           this.router.navigate(["sidebar"])
           setTimeout(() => {
             location.reload()
-          }, 200);
+          }, 100);
 
         })
       }

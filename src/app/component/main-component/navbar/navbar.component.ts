@@ -41,7 +41,7 @@ export class NavbarComponent implements OnInit {
     this.cookie.deleteAll();
     setTimeout(() => {
       location.reload()
-    }, 200);
+    }, 100);
     this.router.navigate([""])
   }
 
