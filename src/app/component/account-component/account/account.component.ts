@@ -10,6 +10,8 @@ import { UsersService } from 'src/app/services/users.service';
   styleUrls: ['./account.component.css']
 })
 export class AccountComponent implements OnInit {
+  cookieUserId: any;
+
   update = false;
   loaded = false;
 
@@ -31,13 +33,13 @@ export class AccountComponent implements OnInit {
   //8 caractères minimum, 1 maj, 1 min, 1 chiffre, 1 caractère speciale
   regExPassword: RegExp = /^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W]){1,})(?!.*\s).{8,}$/;
 
-  constructor(private formBuilder: FormBuilder, private customValidator: CustomvalidationService, private userService : UsersService, private cookieService : CookieService) {}
+  constructor(private formBuilder: FormBuilder, private customValidator: CustomvalidationService, private userService: UsersService, private cookieService: CookieService) { }
 
   ngOnInit(): void {
-        //User 10 par default à changer
+    this.cookieUserId = this.cookieService.get('CookieCatId');
 
-        this.userService.getUserFromService(10).subscribe(data => {
-          this.user = data;
+    this.userService.getUserFromService(this.cookieUserId).subscribe(data => {
+      this.user = data;
 
       //Permet de lancer qu'une fois la requête finie
       this.initForm();
@@ -106,17 +108,17 @@ export class AccountComponent implements OnInit {
         //Ne compare que si l'input est différent de l'email actuel de l'user
         if (this.user.email != formEmail) {
 
-          if(this.regExEmail.test(formEmail)){
+          if (this.regExEmail.test(formEmail)) {
             this.emailError = false;
             this.emailCheck = false;
             this.userService.checkEmailService(formEmail).subscribe(data => {
               this.emailVacant = data;
             })
-          }else{
+          } else {
             this.emailError = true;
           }
-          
-          
+
+
 
         } else {
           this.emailError = false;
@@ -142,26 +144,26 @@ export class AccountComponent implements OnInit {
     })
   }
 
-  checkPassword(){
+  checkPassword() {
     this.profilForm.get('password')?.valueChanges.subscribe(value => {
       let formPassword: string = this.profilForm.get('password')?.value;
 
-      if (null == formPassword){
+      if (null == formPassword) {
         this.passwordCheck = true;
         this.passwordConfirm = true;
 
-      } else if ("" == formPassword){
-          this.profilForm.get('password')?.markAsPristine();
-          this.profilForm.get('password')?.setValue(null);
+      } else if ("" == formPassword) {
+        this.profilForm.get('password')?.markAsPristine();
+        this.profilForm.get('password')?.setValue(null);
       }
 
       //true si modification par l'user
       if (this.profilForm.get('password')?.dirty) {
-        
+
         if (this.user.password != formPassword) {
           this.passwordCheck = false;
 
-          if(this.regExPassword.test(formPassword)){
+          if (this.regExPassword.test(formPassword)) {
             this.passwordError = false;
             this.passwordConfirm = false;
           } else {
@@ -174,14 +176,14 @@ export class AccountComponent implements OnInit {
       this.checkAllValid();
     })
   }
-  
-  checkConfirmPassword(){
-    this.profilForm.get('passwordVerified')?.valueChanges.subscribe(data =>{
-      
+
+  checkConfirmPassword() {
+    this.profilForm.get('passwordVerified')?.valueChanges.subscribe(data => {
+
       let password: String = this.profilForm.get('password')?.value;
       let confirmPassword: String = this.profilForm.get('passwordVerified')?.value;
 
-      if(confirmPassword == password){
+      if (confirmPassword == password) {
         this.confirmError = false;
         this.passwordConfirm = true;
         this.passwordCheck = true;
@@ -192,9 +194,9 @@ export class AccountComponent implements OnInit {
     })
   }
 
-  checkAllValid(){
+  checkAllValid() {
 
-    if(!this.emailCheck || !this.usernameCheck || !this.passwordCheck){
+    if (!this.emailCheck || !this.usernameCheck || !this.passwordCheck) {
       this.allValid = false;
     } else {
       this.allValid = true;
@@ -226,7 +228,7 @@ export class AccountComponent implements OnInit {
     this.user.firstName = this.updateUser.firstName;
     this.user.email = this.updateUser.email;
 
-    if(null != this.updateUser.password){
+    if (null != this.updateUser.password) {
       this.user.password = this.updateUser.password;
     }
   }
