@@ -23,6 +23,7 @@ import { LoginComponent } from './component/main-component/login/login.component
 import { NavbarComponent } from './component/main-component/navbar/navbar.component';
 import { SignUpComponent } from './component/main-component/sign-up/sign-up.component';
 import { AddpermanentcoursesComponent } from './component/account-component/addpermanentcourses/addpermanentcourses.component';
+import { FooterComponent } from './component/main-component/footer/footer.component';
 
 
 
@@ -46,7 +47,8 @@ import { AddpermanentcoursesComponent } from './component/account-component/addp
     LoginComponent,
     NavbarComponent,
     SignUpComponent,
-    AddpermanentcoursesComponent
+    AddpermanentcoursesComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
