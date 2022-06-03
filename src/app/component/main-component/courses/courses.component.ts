@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 import { CoursesService } from 'src/app/services/courses.service';
 
 @Component({
@@ -13,11 +14,23 @@ export class CoursesComponent implements OnInit {
   page = 0;
   pagemax: any;
 
-  constructor(private courseS: CoursesService) { }
+  textTooltip: any
+  role = ''
+  test:boolean = false
+
+
+  constructor(private courseS: CoursesService, private cookie: CookieService) { }
 
   ngOnInit(): void {
     this.getPageMaxOfCourses();
     this.getPage0OfCourses();
+
+    this.role = this.cookie.get('CookieCatRole')
+    if (this.role == ''){
+      this.textTooltip = "Connexion nécessaire pour effectuer cette action !"
+    } else {
+      this.test = true
+    }
   }
 
   getAllCourses(){

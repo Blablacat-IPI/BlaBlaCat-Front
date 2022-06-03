@@ -11,15 +11,24 @@
 
   <!--Pour le kit d'icones -->
   <script src="https://kit.fontawesome.com/b778f5e7f4.js" crossorigin="anonymous"></script>
-  <!-- Pour la sidebar -->
-  <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.5/dist/flowbite.min.css" />
+
+  <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.7/dist/flowbite.min.css" />
 </head>
 
 <body class="mat-typography">
   <app-root></app-root>
+      <!-- Required popper.js -->
+      <script src="https://unpkg.com/@popperjs/core@2.9.1/dist/umd/popper.min.js" charset="utf-8"></script>
+      <script type="text/javascript">
+        var tooltipTriggerList = [].slice.call(
+          document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        );
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+          return new Tooltip(tooltipTriggerEl);
+        });
+      </script>
 
-  <!-- Pour la sidebar -->
-  <script src="https://unpkg.com/flowbite@1.4.5/dist/flowbite.js"></script>
+  <script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js"></script>
 </body>
 
 </html>

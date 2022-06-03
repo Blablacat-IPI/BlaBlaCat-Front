@@ -7,8 +7,8 @@
           <button class="flex items-center p-2 text-base"
            (click)="afficherAccount()">
            <i class="fa-solid fa-house-user"></i>
-          <span class="ml-3 text-w hover:underline hover:underline-offset-8 hover:decoration-w">Mon profil</span>
-          </button>
+          <span class="ml-3 text-w hover:underline hover:underline-offset-8 hover:decoration-w ">Mon profil</span>
+        </button>
         </li>
         <li>
           <button class="flex items-center p-2 text-base "
@@ -36,7 +36,7 @@
 
       <!-- Zone Admin -->
 
-      <ul class="pt-4 mt-4 space-y-2 lineseparator">
+      <ul class="pt-4 mt-4 space-y-2 lineseparator" *ngIf="Admintoggle">
         <li>
           <button class="flex items-center p-2 text-base"
            (click)="afficherValidateAccount()">

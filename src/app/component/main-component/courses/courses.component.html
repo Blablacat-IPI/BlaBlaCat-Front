@@ -71,7 +71,8 @@
                 </div> 
                 <div class="mt-2 ">
                     <div class="m-auto mt-4 text-center">
-                        <button class="w-40 py-2 text-xl buttonOrange hover:outline-offset-2 hover:outline-2 hover:outline-double hover:outline-w" (click)="addReservation(course)">Reserver</button>
+                        <button class="w-40 py-2 text-xl buttonOrange hover:outline-offset-2 hover:outline-2 hover:outline-double hover:outline-w tip"
+                         (click)="addReservation(course)" data-bs-toggle="tooltip" title="{{textTooltip}}" [disabled]="!test">Reserver</button>
                     </div>
 
 
@@ -87,51 +88,7 @@
 
 </div>
 
-
-
-
-
-
-<!-- 
-<div class="flex-col mt-2 ml-2 basis-1/2">
-    <button class="w-full py-2 text-xl buttonWhite hover:outline-offset-2 hover:outline-2 hover:outline-double hover:outline-w" 
-    type="button" data-modal-toggle="defaultModal">+ d'infos</button>
+<div id="tooltip-click" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+    Tooltip content
+    <div class="tooltip-arrow" data-popper-arrow></div>
 </div>
-
-<div id="defaultModal" tabindex="-1" aria-hidden="false" class="fixed top-0 left-0 right-0 z-50 hidden w-full overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
-    <div class="relative w-full h-full max-w-2xl p-4 md:h-auto">
-
-        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-
-            <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
-                <h5 class="modal-title" id="exampleModalLongTitle">Trajet proposé par {{course.driverUsername}}</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-
-            <div class="p-6 space-y-6">
-                <p>{{course.driverUsername}}</p>
-                <p>Adresse de départ :</p>
-                <p>{{course.streetDeparture}}</p>
-                <p>{{course.cityDeparture}}</p>
-                <p>{{course.departureZipCode}}</p>
-                <hr>
-                <p>Adresse d'arrivée</p>
-                <p>{{course.streetArrival}}</p>
-                <p>{{course.cityArrival}}</p>
-                <p>{{course.arrivalZipCode}}</p>
-                <p>{{course.numberPlace}}</p>
-                <hr>
-                <p>Date et heure</p>
-                <p>{{course.date | date: 'shortDate'}}</p>
-                <p>{{course.date | date: 'shortTime'}}</p>
-            </div>
-
-            <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
-                <button class="w-full text-xl buttonOrange hover:outline-offset-2 hover:outline-2 hover:outline-double hover:outline-w" (click)="addReservation(course)">Reserver</button>
-                <button type="button" class="w-full text-xl buttonWhite hover:outline-offset-2 hover:outline-2 hover:outline-double hover:outline-w" data-dismiss="modal">Fermer</button>
-            </div>
-        </div>
-    </div>
-</div> -->

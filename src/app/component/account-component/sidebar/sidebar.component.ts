@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 import { CoursesService } from 'src/app/services/courses.service';
 import { UsersService } from 'src/app/services/users.service';
 
@@ -15,14 +16,27 @@ export class SidebarComponent implements OnInit {
   afficherAPc:boolean = false
   afficherA:boolean = false
   
+  Admintoggle:boolean = false
 
-  constructor(private us: UsersService) {
+  username = ''
+  role = ''
+  id = ''
 
+  constructor(private us: UsersService, private cookie: CookieService) {
    }
 
   ngOnInit(): void {
     CoursesService.afficheCroix = false;
     this.afficherMc = true
+
+    this.username = this.cookie.get('CookieCatUsername')
+    this.role = this.cookie.get('CookieCatRole')
+    this.id = this.cookie.get('CookieCatId')
+
+    if  (this.role == 'Admin') {
+      this.Admintoggle = true
+    }
+
   }
 
   ngOnDestroy(){
