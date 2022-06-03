@@ -26,10 +26,11 @@ export class LoginComponent implements OnInit {
           this.cookieService.set('CookieCatUsername', this.Cookie.username, 1)
           this.cookieService.set('CookieCatRole', this.Cookie.role, 1)
           this.cookieService.set('CookieCatId', this.Cookie.id, 1)
-          this.router.navigate(['courses'])
-          // this.router.navigate(['app'], { skipLocationChange: true}).then(() => {
-          //   this.router.navigate(['courses'])
-          // })
+          setTimeout(() => {
+            location.reload()
+          }, 200);
+          this.router.navigate(["sidebar"])
+
         })
       }
     })

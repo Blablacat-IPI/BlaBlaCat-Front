@@ -13,14 +13,13 @@ export class NavbarComponent implements OnInit {
   logintoggle:boolean = true
   accounttoggle:boolean = false
   addcoursestoggle:boolean = false
+  logouttoggle:boolean = false
 
   username = ''
   role = ''
   id = ''
 
-  constructor(private cookie: CookieService, private router: Router) { }
-
-  ngOnInit(): void {
+  constructor(private cookie: CookieService, private router: Router) { 
     this.username = this.cookie.get('CookieCatUsername')
     this.role = this.cookie.get('CookieCatRole')
     this.id = this.cookie.get('CookieCatId')
@@ -30,8 +29,23 @@ export class NavbarComponent implements OnInit {
       this.logintoggle = false
       this.accounttoggle = true
       this.addcoursestoggle = true
+      this.logouttoggle = true
     }
   }
+
+  ngOnInit(): void {
+
+  }
+
+  logOut() {
+    this.cookie.deleteAll();
+    setTimeout(() => {
+      location.reload()
+    }, 200);
+    this.router.navigate([""])
+  }
+
+  
 
 
 }
