@@ -21,6 +21,10 @@ export class AccountComponent implements OnInit {
   emailCheck: any = true;
   emailVacant: any = true;
 
+  regExEmail: RegExp = /^[\w-\.]+@([\w-]+\.)+[\w{1,3}]{2,4}$/;
+  //8 caractères minimum, 1 maj, 1 min, 1 chiffre, 1 caractère speciale
+  regExPassword: RegExp = /^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W]){1,})(?!.*\s).{8,}$/;
+
   constructor(private formBuilder: FormBuilder, private customValidator: CustomvalidationService, private userService: UsersService) { }
 
   ngOnInit(): void {
@@ -44,7 +48,7 @@ export class AccountComponent implements OnInit {
       idCompany: [this.user.idCompany],
       lastName: [this.user.lastName, [Validators.required]],
       firstName: [this.user.firstName, [Validators.required]],
-      email: [this.user.email, [Validators.required]],
+      email: [this.user.email, [Validators.required, Validators.pattern(this.regExEmail)]],
       emailVerified: ['']
     }, {
       updateOn: 'blur',
@@ -75,11 +79,7 @@ export class AccountComponent implements OnInit {
           this.usernameCheck = true;
         }
 
-        if(!this.usernameCheck){
-          this.allValid = false;
-        } else {
-          this.allValid = true;
-        }
+        this.checkAllValid();
 
       }
 
@@ -109,6 +109,9 @@ export class AccountComponent implements OnInit {
           this.profilForm.controls["emailVerified"].clearValidators();
         }
 
+        this.checkAllValid();
+
+
       }
 
     })
@@ -124,8 +127,19 @@ export class AccountComponent implements OnInit {
         this.emailCheck = true;
       }
 
+      this.checkAllValid();
+
     })
 
+  }
+
+  checkAllValid(){
+
+    if(!this.emailCheck || !this.usernameCheck){
+      this.allValid = false;
+    } else {
+      this.allValid = true;
+    }
   }
 
   onUpdateForm() {
