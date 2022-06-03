@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
 import { CustomvalidationService } from 'src/app/services/customvalidation.service';
 import { UsersService } from 'src/app/services/users.service';
 
@@ -18,10 +19,11 @@ export class AccountComponent implements OnInit {
   emailCheck: any = true;
   emailVacant: any = true;
 
-  constructor(private formBuilder: FormBuilder, private customValidator: CustomvalidationService, private userService : UsersService) {}
+  constructor(private formBuilder: FormBuilder, private customValidator: CustomvalidationService, private userService : UsersService, private cookieService : CookieService) {}
 
   ngOnInit(): void {
         //User 10 par default à changer
+
         this.userService.getUserFromService(10).subscribe(data => {
           this.user = data;
 

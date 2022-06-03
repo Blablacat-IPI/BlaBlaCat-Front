@@ -2,11 +2,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-<<<<<<< HEAD
-=======
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CookieService } from 'ngx-cookie-service';
->>>>>>> eaf15dbd30df8dfb7ee694956e9dbb3a48397f06
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
