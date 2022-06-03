@@ -3,15 +3,14 @@
 
     <form [formGroup]="profilForm" aria-disabled="update">
         <div class="p-2">
-
             <div class="flex">
-                <div class="p-2 m-auto text-center form-group">
+                <div class="p-2 text-center form-group">
+                    <p class="text-left">Pseudo</p>
                     <input type="text" class="form-control placeholder:text-w" [ngClass]="{'inputOrange': !usernameCheck, 'inputBlue': usernameCheck}" formControlName="username">
-                    
                 </div>
-                <div class="p-2 m-auto text-center form-group">
+                <!-- <div class="p-2 m-auto text-center form-group">
                     <input type="text" class="form-control inputBlue placeholder:text-w" formControlName="idCompany">
-                </div>
+                </div> -->
             </div>
             <div class="p-2 errorWarning" *ngIf="!usernameCheck">
                 <span class="block sm:inline">Ce pseudo est déjà utilisé</span>
@@ -19,15 +18,22 @@
 
             <div class="flex">
                 <div class="p-2 m-auto text-center form-group">
+                    <p class="text-left">Nom</p>
                     <input type="text" class="form-control inputBlue placeholder:text-w" formControlName="lastName">
                 </div>
                 <div class="p-2 m-auto text-center form-group">
+                    <p class="text-left">Prénom</p>
                     <input type="text" class="form-control inputBlue placeholder:text-w" formControlName="firstName">
                 </div>
             </div>
 
             <div class="p-2 m-auto text-center form-group">
+                <p class="text-left">Email</p>
                 <input type="email" class="w-full form-control placeholder:text-w" [ngClass]="{'inputOrange': !emailVacant, 'inputBlue': emailVacant}" formControlName="email">
+            </div>
+            <div class="p-2 errorWarning" *ngIf="emailError">
+                <span class="block sm:inline">Email non conforme</span><br>
+                <span class="block sm:inline">Exemples : xxxxxxxxxxx@xxxxxxx.fr ou xxxxxx@xxx.com</span>
             </div>
             <div class="p-2 errorWarning" *ngIf="!emailVacant">
                 <span class="block sm:inline">Cet email déjà utilisé</span>
@@ -42,13 +48,14 @@
 
             
             
-            <h6 class="pt-2 pb-1 pl-2" *ngIf="update">Mot de passe de 8 caractères obligatoires (1 Maj, 1 Min, 1 Chiffre et 1 caractère spécial obligatoire)</h6>
             
             <div class="p-2 m-auto text-center form-group"*ngIf="update">
+                <p class="text-left">Mot de passe</p>
+                <h6 class="pb-1" *ngIf="update">8 caractères obligatoires (1 Maj, 1 Min, 1 Chiffre et 1 caractère spécial obligatoire)</h6>
                 <input type="password" class="w-full form-control placeholder:text-w" [ngClass]="{'inputOrange': passwordError, 'inputBlue': !passwordError}" formControlName="password" placeholder="Modifer le mot de passe">
             </div>
             <div class="p-2 errorWarning" *ngIf="passwordError">
-                <span class="block sm:inline">1 Maj, 1 Min, 1 Chiffre et 1 caractère spécial obligatoire</span>
+                <span class="block sm:inline">Min. 8 caractères, 1 Maj, 1 Min, 1 Chiffre et 1 caractère spécial obligatoire</span>
             </div>
             
             <div class="p-2 m-auto text-center form-group" *ngIf="!passwordConfirm || (profilForm.get('passwordVerified')?.dirty)">

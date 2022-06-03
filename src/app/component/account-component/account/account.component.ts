@@ -19,13 +19,14 @@ export class AccountComponent implements OnInit {
   allValid: any = true;
   usernameCheck: any = true;
   emailCheck: any = true;
+  emailError: any = false;
   emailVacant: any = true;
   passwordCheck: any = true;
   passwordError: any = false;
   passwordConfirm: any = true;
   confirmError: any = false;
 
-  regExEmail: RegExp = /^[\w-\.]+@([\w-]+\.)+[\w{1,3}]{2,4}$/; // xxxxxxxxxxxx@XXXXXXXX.XX(XX)
+  regExEmail: RegExp = /^[\w-\.]+@([\w-]+\.)+[\w{1,3}]{2,3}$/; // xxxxxxxxxxxx@XXXXXXXX.XX(XX)
   //8 caractères minimum, 1 maj, 1 min, 1 chiffre, 1 caractère speciale
   regExPassword: RegExp = /^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W]){1,})(?!.*\s).{8,}$/;
 
@@ -95,23 +96,29 @@ export class AccountComponent implements OnInit {
 
   checkEmail() {
     this.profilForm.get('email')?.valueChanges.subscribe(value => {
-      let formEmail: String = this.profilForm.get('email')?.value;
+      let formEmail: string = this.profilForm.get('email')?.value;
 
       //Si User modifie
       if (this.profilForm.get('email')?.dirty) {
 
         //Ne compare que si l'input est différent de l'email actuel de l'user
         if (this.user.email != formEmail) {
-          this.emailCheck = false;
-          this.profilForm.controls["emailVerified"].setValidators(Validators.required);
+
+          if(this.regExEmail.test(formEmail)){
+            this.emailError = false;
+            this.emailCheck = false;
+            this.userService.checkEmailService(formEmail).subscribe(data => {
+              this.emailVacant = data;
+            })
+          }else{
+            this.emailError = true;
+          }
           
-          this.userService.checkEmailService(formEmail).subscribe(data => {
-            this.emailVacant = data;
-          })
+          
 
         } else {
+          this.emailError = false;
           this.emailCheck = true;
-          this.profilForm.controls["emailVerified"].clearValidators();
           this.profilForm.get('emailVerified')?.markAsPristine();
         }
         this.checkAllValid();
@@ -139,6 +146,7 @@ export class AccountComponent implements OnInit {
 
       if (null == formPassword){
         this.passwordCheck = true;
+        this.passwordConfirm = true;
 
       } else if ("" == formPassword){
           this.profilForm.get('password')?.markAsPristine();
@@ -185,7 +193,6 @@ export class AccountComponent implements OnInit {
   checkAllValid(){
 
     if(!this.emailCheck || !this.usernameCheck || !this.passwordCheck){
-      console.log(this.passwordCheck);
       this.allValid = false;
     } else {
       this.allValid = true;
@@ -217,11 +224,9 @@ export class AccountComponent implements OnInit {
     this.user.firstName = this.updateUser.firstName;
     this.user.email = this.updateUser.email;
 
-    // if(null != this.updateUser.password){
-    //   this.user.password = this.updateUser.password;
-    // } else {
-    //   console.log("email pas modifier");
-    // }
+    if(null != this.updateUser.password){
+      this.user.password = this.updateUser.password;
+    }
   }
 
 }
