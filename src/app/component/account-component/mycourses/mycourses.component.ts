@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 import { CoursesService } from 'src/app/services/courses.service';
 
 @Component({
@@ -7,6 +8,8 @@ import { CoursesService } from 'src/app/services/courses.service';
   styleUrls: ['./mycourses.component.css']
 })
 export class MycoursesComponent implements OnInit {
+  userId: any;
+
   //Trajets réservés par l'User
   myReservations: any;
   pageReservations = 0;
@@ -17,9 +20,10 @@ export class MycoursesComponent implements OnInit {
   pageCourses = 0;
   pageMaxCourses: any;
 
-  constructor(private CourseService: CoursesService) { }
+  constructor(private CourseService: CoursesService, private cookieService: CookieService) { }
 
   ngOnInit(): void {
+    this.userId = this.cookieService.get('CookieCatId');
     this.initReservations();
     this.initCourses();
   }
@@ -32,7 +36,7 @@ export class MycoursesComponent implements OnInit {
 
 
   getPageMaxReservations() {
-    this.CourseService.getPageMaxReservations().subscribe(data => {
+    this.CourseService.getPageMaxReservations(this.userId).subscribe(data => {
       this.pageMaxReservations = data;
     });
   }
@@ -41,7 +45,7 @@ export class MycoursesComponent implements OnInit {
     console.log("Nombre de page max : " + this.pageMaxReservations)
     this.pageReservations = 0;
     console.log("Page actuelle : " + this.pageReservations)
-    this.CourseService.getPageOfMyReservationsFromService(this.pageReservations).subscribe(data => {
+    this.CourseService.getPageOfMyReservationsFromService(this.pageReservations, this.userId).subscribe(data => {
       this.myReservations = data;
     })
   }
@@ -51,7 +55,7 @@ export class MycoursesComponent implements OnInit {
     if (this.pageReservations > 0) {
       this.pageReservations--;
       console.log("Page actuelle : " + this.pageReservations)
-      this.CourseService.getPageOfMyReservationsFromService(this.pageReservations).subscribe(data => {
+      this.CourseService.getPageOfMyReservationsFromService(this.pageReservations, this.userId).subscribe(data => {
         this.myReservations = data;
       })
     }
@@ -64,7 +68,7 @@ export class MycoursesComponent implements OnInit {
     if (this.pageReservations < this.pageMaxReservations) {
       this.pageReservations++;
       console.log("Page actuelle : " + this.pageReservations)
-      this.CourseService.getPageOfMyReservationsFromService(this.pageReservations).subscribe(data => {
+      this.CourseService.getPageOfMyReservationsFromService(this.pageReservations, this.userId).subscribe(data => {
         this.myReservations = data;
       })
     }
