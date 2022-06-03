@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CoursesService } from 'src/app/services/courses.service';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -13,11 +14,15 @@ export class SidebarComponent implements OnInit {
   afficherMc:boolean = false
   afficherAPc:boolean = false
   afficherA:boolean = false
+  
 
-  constructor() { }
+  constructor(private us: UsersService) {
+
+   }
 
   ngOnInit(): void {
     CoursesService.afficheCroix = false;
+    this.afficherMc = true
   }
 
   ngOnDestroy(){
