@@ -44,12 +44,12 @@ export class CoursesService {
   }
 
   // ********************************* MyReservations ************************************  
-  getPageOfMyReservationsFromService(page: any) {
-    return this.http.get('http://localhost:8080/Reservation/Page?page='+page)
+  getPageOfMyReservationsFromService(page: any, userId: any) {
+    return this.http.get('http://localhost:8080/Reservation/Page?page='+page +'&userId='+userId)
   }
 
-  getPageMaxReservations() {
-    return this.http.get('http://localhost:8080/Reservation/pagemax')
+  getPageMaxReservations(userId: any) {
+    return this.http.get('http://localhost:8080/Reservation/pagemax' + userId)
   }
 
   // ********************************* MyCourses **************************************
