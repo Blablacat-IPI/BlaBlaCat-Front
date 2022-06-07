@@ -10,7 +10,11 @@ import { CoursesService } from 'src/app/services/courses.service';
 export class CoursesComponent implements OnInit {
   courses: any;
   afficheRecherche:boolean = false;
+<<<<<<< HEAD
   courseReservation:boolean = false;
+=======
+  userId: any;
+>>>>>>> 63dad6271d9378e3803abb7d0c03ea6320fd1f52
 
   page = 0;
   pagemax: any;
@@ -23,6 +27,7 @@ export class CoursesComponent implements OnInit {
   constructor(private courseS: CoursesService, private cookie: CookieService) { }
 
   ngOnInit(): void {
+    this.userId = this.cookie.get('CookieCatId');
     this.getPageMaxOfCourses();
     this.getPage0OfCourses();
 
@@ -41,7 +46,12 @@ export class CoursesComponent implements OnInit {
     })
   }
 
-  addReservation(reservation:any){
+  addReservation(course:any){
+    let reservation: any;
+    reservation = {
+      course: course,
+      userId: this.userId};
+
     this.courseS.addReservationFromService(reservation).subscribe(data => {
       this.courses.numberPlace - 1;
       console.log("Trajet enregistré" + " " + "Places disponibles");

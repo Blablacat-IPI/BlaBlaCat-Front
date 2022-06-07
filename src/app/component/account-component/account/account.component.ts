@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
-import { CustomvalidationService } from 'src/app/services/customvalidation.service';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
@@ -33,7 +32,7 @@ export class AccountComponent implements OnInit {
   //8 caractères minimum, 1 maj, 1 min, 1 chiffre, 1 caractère speciale
   regExPassword: RegExp = /^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W]){1,})(?!.*\s).{8,}$/;
 
-  constructor(private formBuilder: FormBuilder, private customValidator: CustomvalidationService, private userService: UsersService, private cookieService: CookieService) { }
+  constructor(private formBuilder: FormBuilder, private userService: UsersService, private cookieService: CookieService) { }
 
   ngOnInit(): void {
     this.cookieUserId = this.cookieService.get('CookieCatId');
