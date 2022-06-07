@@ -42,6 +42,14 @@ export class CoursesService {
     let keyCity = city.value.keyCity;
     return this.http.get('http://localhost:8080/Course/searchcity/' + keyCity)
   }
+  searchByStreetService(street: any) {
+    let keyStreet = street.value.keyStreet;
+    return this.http.get('http://localhost:8080/Course/searchstreet/' + keyStreet)
+  }
+  searchByZipcodeService(zipcode: any) {
+    let keyZipcode = zipcode.value.keyZipcode;
+    return this.http.get('http://localhost:8080/Course/searchzipcode/' + keyZipcode)
+  }
 
   // ********************************* MyReservations ************************************  
   getPageOfMyReservationsFromService(page: any, userId: any) {
