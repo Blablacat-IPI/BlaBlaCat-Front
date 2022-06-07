@@ -43,11 +43,10 @@ export class AddcoursesComponent implements OnInit {
     //A simplifier avec :https://stackoverflow.com/questions/34546447/bind-an-input-with-type-datetime-local-to-a-date-property-in-angular-2
     //this.mois = this.dateTime.getMonth().toString();
 
-    //toLocaleString => dd/MM/yyyy, HH:mm:ss
-    this.jour = this.dateTime.toLocaleString('fr-FR').split('/')[0];//dd
-    this.mois = this.dateTime.toLocaleString('fr-FR').split('/')[1];//MM
-    this.annee = this.dateTime.toLocaleString('fr-FR').split('/')[2].split(',')[0];//yyyy
-    this.heure = this.dateTime.toLocaleString('fr-FR').split(' ')[1].split(":")[0] + ":" + this.dateTime.toLocaleString('fr-FR').split(' ')[1].split(":")[1];
+    this.jour = this.dateTime.getDay().toString();
+    this.mois = this.dateTime.getMonth().toString();
+    this.annee = this.dateTime.getFullYear().toString();
+    this.heure = this.dateTime.getHours().toString() + ":" + this.dateTime.getMinutes().toString();
     
     return this.annee + "-" + this.mois + "-" + this.jour + "T" + this.heure;
   }
@@ -57,11 +56,11 @@ export class AddcoursesComponent implements OnInit {
     this.dateTime = new Date(Date.now());
 
     //toLocaleString => dd/MM/yyyy, HH:mm:ss
-    this.jour = this.dateTime.toLocaleString('fr-FR').split('/')[0];//dd
-    this.mois = this.dateTime.toLocaleString('fr-FR').split('/')[1];//MM
-    this.annee = this.dateTime.toLocaleString('fr-FR').split('/')[2].split(',')[0];//yyyy
+    this.jour = this.dateTime.getDay().toString();
+    this.mois = this.dateTime.getMonth().toString();
+    this.annee = this.dateTime.getFullYear().toString();
     this.annee = (+this.annee + 2).toString();
-    this.heure = this.dateTime.toLocaleString('fr-FR').split(' ')[1].split(":")[0] + ":" + this.dateTime.toLocaleString('fr-FR').split(' ')[1].split(":")[1];
+    this.heure = this.dateTime.getHours().toString() + ":" + this.dateTime.getMinutes().toString();
     
     return this.annee + "-" + this.mois + "-" + this.jour + "T" + this.heure;
   }
