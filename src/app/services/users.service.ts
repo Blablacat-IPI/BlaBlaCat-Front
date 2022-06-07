@@ -25,6 +25,10 @@ export class UsersService {
     return this.http.get('http://localhost:8080/Users/usernameCheckVacant?username=' + username);
   }
 
+  checkCompanyIdService(companyId: any){
+    return this.http.get('http://localhost:8080/Users/companyIdCheckVacant?companyId=' + companyId);
+  }
+
   checkEmailService(email: any){
     return this.http.get('http://localhost:8080/Users/emailCheckVacant?email=' + email);
   }

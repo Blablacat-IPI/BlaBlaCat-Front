@@ -42,6 +42,7 @@ export class AccountComponent implements OnInit {
 
       //Permet de lancer qu'une fois la requête finie
       this.initForm();
+      this.initSubscribes();
 
       //le html ne se charge pas tant que loaded = false
       //laisse le temps à la requête http de se faire
@@ -66,131 +67,143 @@ export class AccountComponent implements OnInit {
     }, {
       updateOn: 'blur',
     })
-
-    this.checkUsername();
-    this.checkEmail();
-    this.checkConfirmEmail();
-    this.checkPassword();
-    this.checkConfirmPassword();
   }
 
-  checkUsername() {
+  initSubscribes(){
     this.profilForm.get('username')?.valueChanges.subscribe(value => {
-      let formUsername: String = this.profilForm.get('username')?.value;
+      this.checkUsername(value);
+    });
 
-      //true si modification par l'user
-      if (this.profilForm.get('username')?.dirty) {
+    this.profilForm.get('email')?.valueChanges.subscribe(value => {
+      this.checkEmail(value);
+    });
 
-        //Ne compare que si l'input est différent de l'Username actuel de l'user
-        if (this.user.username != formUsername) {
-          this.userService.checkUsernameService(formUsername).subscribe(data => {
-            this.usernameCheck = data;
-            //si False, bouton désactivé (html)
+    this.profilForm.get('emailVerified')?.valueChanges.subscribe(value => {
+      this.checkConfirmEmail();
+    });
+
+    this.profilForm.get('password')?.valueChanges.subscribe(value => {
+      this.checkPassword(value);
+    });
+
+    this.profilForm.get('passwordVerified')?.valueChanges.subscribe(value => {
+      this.checkConfirmPassword();
+    });
+
+    this.checkConfirmPassword();
+
+    this.profilForm.valueChanges.subscribe(() => {
+      this.checkAllValid();
+    })
+  }
+
+  checkUsername(value: string) {
+    //true si modification par l'user
+    if (this.profilForm.get('username')?.dirty) {
+
+      //Ne compare que si l'input est différent de l'Username actuel de l'user
+      if (this.user.username.toString != value.toString) {
+        this.userService.checkUsernameService(value).subscribe(data => {
+          this.usernameCheck = data;
+          //si False, bouton désactivé (html)
+        })
+      } else {
+        this.usernameCheck = true;
+      }
+    }
+  }
+
+  checkEmail(value: string) {
+
+    //Si User modifie
+    if (this.profilForm.get('email')?.dirty) {
+
+      //Ne compare que si l'input est différent de l'email actuel de l'user
+      if (this.user.email !== value) {
+        if (this.regExEmail.test(value)) {
+          this.emailError = false;
+          this.emailCheck = false;
+          this.userService.checkEmailService(value).subscribe(data => {
+            this.emailVacant = data;
           })
         } else {
-          this.usernameCheck = true;
+          this.emailError = true;
         }
 
-        this.checkAllValid();
+      } else {
+        this.emailError = false;
+        this.emailCheck = true;
+        this.emailVacant = true;
+        this.profilForm.get('emailVerified')?.markAsPristine();
       }
 
-    })
-  }
-
-  checkEmail() {
-    this.profilForm.get('email')?.valueChanges.subscribe(value => {
-      let formEmail: string = this.profilForm.get('email')?.value;
-
-      //Si User modifie
-      if (this.profilForm.get('email')?.dirty) {
-
-        //Ne compare que si l'input est différent de l'email actuel de l'user
-        if (this.user.email != formEmail) {
-
-          if (this.regExEmail.test(formEmail)) {
-            this.emailError = false;
-            this.emailCheck = false;
-            this.userService.checkEmailService(formEmail).subscribe(data => {
-              this.emailVacant = data;
-            })
-          } else {
-            this.emailError = true;
-          }
-
-
-
-        } else {
-          this.emailError = false;
-          this.emailCheck = true;
-          this.profilForm.get('emailVerified')?.markAsPristine();
+      if (this.emailVacant) {
+        if (this.profilForm.get('emailVerified')?.dirty) {
+          this.checkConfirmEmail();
         }
-        this.checkAllValid();
       }
-    })
+    }
   }
 
   checkConfirmEmail() {
 
-    this.profilForm.get('emailVerified')?.valueChanges.subscribe(value => {
-      let formEmail: String = this.profilForm.get('email')?.value;
-      let formEmailConfirm: String = this.profilForm.get('emailVerified')?.value;
+    let formEmail: String = this.profilForm.get('email')?.value;
+    let formEmailConfirm: String = this.profilForm.get('emailVerified')?.value;
 
-      if (formEmail == formEmailConfirm) {
-        this.emailCheck = true;
-      }
-
-      this.checkAllValid();
-    })
+    if (formEmail == formEmailConfirm) {
+      this.emailCheck = true;
+    }
   }
 
-  checkPassword() {
-    this.profilForm.get('password')?.valueChanges.subscribe(value => {
-      let formPassword: string = this.profilForm.get('password')?.value;
+  checkPassword(value: string) {
 
-      if (null == formPassword) {
-        this.passwordCheck = true;
-        this.passwordConfirm = true;
+    if (null === value) {
+      this.passwordCheck = true;
+      this.passwordConfirm = true;
 
-      } else if ("" == formPassword) {
-        this.profilForm.get('password')?.markAsPristine();
-        this.profilForm.get('password')?.setValue(null);
+      if (this.profilForm.get('passwordVerified')?.touched) {
+        this.confirmError = false;
+        this.profilForm.get('passwordVerified')?.markAsPristine();
+        this.profilForm.get('passwordVerified')?.setValue(null);
       }
 
-      //true si modification par l'user
-      if (this.profilForm.get('password')?.dirty) {
 
-        if (this.user.password != formPassword) {
-          this.passwordCheck = false;
+    } else if ("" === value) {
+      this.profilForm.get('password')?.markAsPristine();
+      this.profilForm.get('password')?.setValue(null);
+    }
 
-          if (this.regExPassword.test(formPassword)) {
-            this.passwordError = false;
-            this.passwordConfirm = false;
-          } else {
-            this.passwordError = true;
-          }
+    //true si modification par l'user
+    if (this.profilForm.get('password')?.dirty) {
+
+      if (this.user.password !== value) {
+        this.passwordCheck = false;
+
+        if (this.regExPassword.test(value)) {
+          this.passwordError = false;
+          this.passwordConfirm = false;
+          this.checkConfirmPassword();
         } else {
-          this.passwordCheck = true;
+          this.passwordError = true;
         }
+      } else {
+        this.passwordCheck = true;
       }
-      this.checkAllValid();
-    })
+    }
   }
 
   checkConfirmPassword() {
-    this.profilForm.get('passwordVerified')?.valueChanges.subscribe(data => {
 
-      let password: String = this.profilForm.get('password')?.value;
-      let confirmPassword: String = this.profilForm.get('passwordVerified')?.value;
+    let password: String = this.profilForm.get('password')?.value;
+    let confirmPassword: String = this.profilForm.get('passwordVerified')?.value;
 
-      if (confirmPassword == password) {
-        this.confirmError = false;
-        this.passwordConfirm = true;
-        this.passwordCheck = true;
-      } else {
-        this.confirmError = true;
-      }
-      this.checkAllValid();
-    })
+    if (confirmPassword === password) {
+      this.confirmError = false;
+      this.passwordConfirm = true;
+      this.passwordCheck = true;
+    } else {
+      this.confirmError = true;
+    }
   }
 
   checkAllValid() {
@@ -200,6 +213,8 @@ export class AccountComponent implements OnInit {
     } else {
       this.allValid = true;
     }
+
+    console.log(this.allValid);
   }
 
   onUpdateForm() {
