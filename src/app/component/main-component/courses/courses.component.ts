@@ -10,6 +10,7 @@ import { CoursesService } from 'src/app/services/courses.service';
 export class CoursesComponent implements OnInit {
   courses: any;
   afficheRecherche:boolean = false;
+  courseReservation:boolean = false;
 
   page = 0;
   pagemax: any;
@@ -44,6 +45,10 @@ export class CoursesComponent implements OnInit {
     this.courseS.addReservationFromService(reservation).subscribe(data => {
       this.courses.numberPlace - 1;
       console.log("Trajet enregistré" + " " + "Places disponibles");
+      this.courseReservation = true;
+      setTimeout(() => {
+        this.courseReservation = false;
+      }, 2000);
     })
   }
 
@@ -58,10 +63,20 @@ export class CoursesComponent implements OnInit {
 
   searchByCity(city: any) {
     this.courseS.searchByCityService(city).subscribe(data => {
-      console.log("Yoshhhh");
       this.courses = data;
     })
   }
+  searchByStreet(street: any) {
+    this.courseS.searchByStreetService(street).subscribe(data => {
+      this.courses = data;
+    })
+  }
+  searchByZipcode(zipcode: any) {
+    this.courseS.searchByZipcodeService(zipcode).subscribe(data => {
+      this.courses = data;
+    })
+  }
+
 
   getPageMaxOfCourses() {
     this.courseS.getPageMaxOfCourses().subscribe(data => {

@@ -7,6 +7,7 @@ import { UsersService } from 'src/app/services/users.service';
   styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent implements OnInit {
+  userRegister:boolean = false
 
   constructor(private us: UsersService) { }
 
@@ -17,6 +18,10 @@ export class SignUpComponent implements OnInit {
     console.log(user.value)
     this.us.addUsersFromService(user.value).subscribe(data => {
       console.log('Users Enregistré');
+      this.userRegister = true;
+      setTimeout(() => {
+        this.userRegister = false;
+      }, 2000);
     })
   }
 

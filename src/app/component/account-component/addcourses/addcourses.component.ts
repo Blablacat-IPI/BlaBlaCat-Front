@@ -7,6 +7,7 @@ import { CoursesService } from 'src/app/services/courses.service';
   styleUrls: ['./addcourses.component.css']
 })
 export class AddcoursesComponent implements OnInit {
+  courseRegister:boolean = false
   //select
   ngDropdown = 0;
   today!: String;
@@ -33,6 +34,10 @@ export class AddcoursesComponent implements OnInit {
   addCourses(course: any) {
     this.cs.addCoursesFromService(course.value).subscribe(date => {
       console.log('Course enregistré !')
+      this.courseRegister = true;
+      setTimeout(() => {
+        this.courseRegister = false;
+      }, 2000);
     })
   }
 
