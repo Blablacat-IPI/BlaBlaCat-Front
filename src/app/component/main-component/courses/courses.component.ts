@@ -10,11 +10,8 @@ import { CoursesService } from 'src/app/services/courses.service';
 export class CoursesComponent implements OnInit {
   courses: any;
   afficheRecherche:boolean = false;
-<<<<<<< HEAD
   courseReservation:boolean = false;
-=======
   userId: any;
->>>>>>> 63dad6271d9378e3803abb7d0c03ea6320fd1f52
 
   page = 0;
   pagemax: any;
