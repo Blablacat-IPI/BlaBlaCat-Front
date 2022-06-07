@@ -120,6 +120,10 @@ export class CoursesComponent implements OnInit {
     }
   }
 
+  annulerRecherche() {
+    location.reload()
+  }
+
 
 
 }
