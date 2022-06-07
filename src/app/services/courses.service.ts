@@ -26,8 +26,8 @@ export class CoursesService {
   }
 
   //Permet à un utilisateur de s'inscrire à un trajet
-  addReservationFromService(reservation: any){
-    return this.http.post('http://localhost:8080/Reservation/add', reservation);
+  addReservationFromService(newReservation:any){
+    return this.http.post('http://localhost:8080/Reservation/add', newReservation);
   }
 
   //Permer d'obtenir les courses que le conducteur créer
