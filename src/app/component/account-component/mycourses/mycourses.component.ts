@@ -82,7 +82,7 @@ export class MycoursesComponent implements OnInit {
   }
 
   getPageMaxCourses() {
-    this.CourseService.getPageMaxMyCourses().subscribe(data => {
+    this.CourseService.getPageMaxMyCourses(this.userId).subscribe(data => {
       this.pageMaxCourses = data;
     });
   }
@@ -91,7 +91,7 @@ export class MycoursesComponent implements OnInit {
     console.log("Nombre de page max : " + this.pageMaxCourses)
     this.pageCourses = 0;
     console.log("Page actuelle : " + this.pageCourses)
-    this.CourseService.getPageOfMyCoursesFromService(this.pageCourses).subscribe(data => {
+    this.CourseService.getPageOfMyCoursesFromService(this.pageCourses, this.userId).subscribe(data => {
       this.myCourses = data;
       console.log(this.myCourses)
     })
@@ -102,7 +102,7 @@ export class MycoursesComponent implements OnInit {
     if (this.pageCourses > 0) {
       this.pageCourses--;
       console.log("Page actuelle : " + this.pageCourses)
-      this.CourseService.getPageOfMyCoursesFromService(this.pageCourses).subscribe(data => {
+      this.CourseService.getPageOfMyCoursesFromService(this.pageCourses, this.userId).subscribe(data => {
         this.myCourses = data;
         console.log(this.myCourses)
       })
@@ -116,7 +116,7 @@ export class MycoursesComponent implements OnInit {
     if (this.pageCourses < this.pageMaxCourses) {
       this.pageCourses++;
       console.log("Page actuelle : " + this.pageCourses)
-      this.CourseService.getPageOfMyCoursesFromService(this.pageCourses).subscribe(data => {
+      this.CourseService.getPageOfMyCoursesFromService(this.pageCourses, this.userId).subscribe(data => {
         this.myCourses = data;
         console.log(this.myCourses)
       })
