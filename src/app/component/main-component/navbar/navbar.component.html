@@ -28,7 +28,7 @@
 
     <li class="flex items-center p-10 nav-item" *ngIf="addcoursestoggle">
       <button class="p-2 ease-in-out hover:decoration-o hover:underline-offset-8 hover:underline" type="button"
-        data-modal-toggle="defaultModal" data-backdrop="false"><i class="fa-regular fa-calendar-plus"></i> Créer un trajet</button>
+        data-modal-toggle="defaultModal"><i class="fa-regular fa-calendar-plus"></i> Créer un trajet</button>
     </li>
     <li class="flex items-center p-10 nav-item" *ngIf="accounttoggle">
       <button class="p-2 nav-link hover:underline hover:underline-offset-8 hover:decoration-o" 
@@ -42,7 +42,7 @@
 </ul>
 
 
-<div id="defaultModal" tabindex="-1" aria-hidden="true" data-modal-backdrop="bg-red-500"
-  class="fixed top-0 left-0 right-0 z-50 hidden w-full overflow-x-hidden overflow-y-auto bg-opacity-0 dark:bg-opacity-0 md:inset-0 h-modal md:h-full">
+<div id="defaultModal" tabindex="-1" aria-hidden="true" 
+  class="fixed top-0 left-0 right-0 z-50 hidden w-full overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
   <app-addcourses></app-addcourses>
 </div>

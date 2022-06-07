@@ -1,6 +1,5 @@
 .sidebar {
     background-color: #33BEF3;
-    height: 100vh;
 }
 
 .lineseparator {
@@ -10,4 +9,9 @@
 
 .flex {
     line-height: 2;
+}
+
+.page {
+    height: 100%;
+    overflow: auto;
 }
