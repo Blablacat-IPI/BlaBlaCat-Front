@@ -9,37 +9,40 @@
         <button class="py-1 text-xl w-52 buttonBlue hover:outline-offset-2 hover:outline-2 hover:outline-double hover:outline-w" (click)="afficherRecherche()">Recherche</button>
     </div>
     
-    <div class="p-4 m-auto cardGrise w-fit" *ngIf="afficheRecherche">
+    <div class="flex p-4 m-auto cardGrise w-fit" *ngIf="afficheRecherche">
         <form (ngSubmit)="searchByCity(city)" #city="ngForm">
-            <div class="flex">
+            <div class="flex mr-8">
                 <div class="p-2 m-auto text-center">
                     <input type="text" class="form-control inputBlue placeholder:text-w" name="keyCity" placeholder="Ville" ngModel>
                 </div>
                 <div class="p-2 m-auto form-group">
-                    <button type="submit" class="py-1 text-xl w-52 buttonBlue hover:outline-offset-2 hover:outline-2 hover:outline-double hover:outline-w">Rechercher</button>
+                    <button type="submit" class="py-1 text-xl w-36 buttonBlue hover:outline-offset-2 hover:outline-2 hover:outline-double hover:outline-w">Rechercher</button>
                 </div>
             </div>
         </form>
         <form (ngSubmit)="searchByStreet(street)" #street="ngForm">
-            <div class="flex">
+            <div class="flex mr-8">
                 <div class="p-2 m-auto text-center">
                     <input type="text" class="form-control inputBlue placeholder:text-w" name="keyStreet" placeholder="Adresse" ngModel>
                 </div>
                 <div class="p-2 m-auto form-group">
-                    <button type="submit" class="py-1 text-xl w-52 buttonBlue hover:outline-offset-2 hover:outline-2 hover:outline-double hover:outline-w">Rechercher</button>
+                    <button type="submit" class="py-1 text-xl w-36 buttonBlue hover:outline-offset-2 hover:outline-2 hover:outline-double hover:outline-w">Rechercher</button>
                 </div>
             </div>
         </form>
         <form (ngSubmit)="searchByZipcode(zipcode)" #zipcode="ngForm">
-            <div class="flex">
+            <div class="flex mr-8">
                 <div class="p-2 m-auto text-center">
                     <input type="text" class="form-control inputBlue placeholder:text-w" name="keyZipcode" placeholder="Code Postal" ngModel>
                 </div>
                 <div class="p-2 m-auto form-group">
-                    <button type="submit" class="py-1 text-xl w-52 buttonBlue hover:outline-offset-2 hover:outline-2 hover:outline-double hover:outline-w">Rechercher</button>
+                    <button type="submit" class="py-1 text-xl w-36 buttonBlue hover:outline-offset-2 hover:outline-2 hover:outline-double hover:outline-w">Rechercher</button>
                 </div>
             </div>
         </form>
+        <div class="p-2 m-auto text-center">
+            <button type="text" (click)="annulerRecherche()" class="py-1 text-xl w-18 buttonOrange hover:outline-offset-2 hover:outline-2 hover:outline-double hover:outline-w">Annuler</button>
+        </div>
     </div>
 
 
@@ -84,7 +87,7 @@
                             <label>Date</label>
                         </div>
                         <div class="mt-2 mr-2">
-                            <button type="text" class="w-full inputBlue" disabled>{{course.date| date:'shortDate'}}</button>
+                            <button type="text" class="w-full inputBlue" disabled>{{course.date| date:'dd/MM/YYYY'}}</button>
                         </div>
                     </div>
                     <div class="flex-col basis-1/2">
@@ -92,7 +95,7 @@
                             <label>Horaire</label>
                         </div>
                         <div class="mt-2 ml-2">
-                            <button type="text" class="w-full inputBlue" disabled>{{course.date | date:'shortTime'}}</button>
+                            <button type="text" class="w-full inputBlue" disabled>{{course.date | date:'HH:mm'}}</button>
                         </div>
                     </div>
                 </div> 
