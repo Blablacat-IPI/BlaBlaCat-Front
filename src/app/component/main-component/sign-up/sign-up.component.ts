@@ -149,7 +149,6 @@ export class SignUpComponent implements OnInit {
   }
 
   onSubmitForm() {
-    console.log("bouton !!!!");
     console.log(this.signUpForm.value);
 
     this.us.addUsersFromService(this.signUpForm.value).subscribe(data => {
