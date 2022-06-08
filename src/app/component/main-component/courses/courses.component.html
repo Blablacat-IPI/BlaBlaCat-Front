@@ -6,51 +6,62 @@
     </div>
 
     <div class="mx-4 mt-4 mb-6 text-center">
-        <button class="py-1 text-xl w-52 buttonBlue hover:outline-offset-2 hover:outline-2 hover:outline-double hover:outline-w" (click)="afficherRecherche()">Recherche</button>
+        <button
+            class="py-1 text-xl w-52 buttonBlue hover:outline-offset-2 hover:outline-2 hover:outline-double hover:outline-w"
+            (click)="afficherRecherche()">Recherche</button>
     </div>
-    
+
     <div class="flex p-4 m-auto cardGrise w-fit" *ngIf="afficheRecherche">
         <form (ngSubmit)="searchByCity(city)" #city="ngForm">
             <div class="flex mr-8">
                 <div class="p-2 m-auto text-center">
-                    <input type="text" class="form-control inputBlue placeholder:text-w" name="keyCity" placeholder="Ville" ngModel>
+                    <input type="text" class="form-control inputBlue placeholder:text-w" name="keyCity"
+                        placeholder="Ville" ngModel>
                 </div>
                 <div class="p-2 m-auto form-group">
-                    <button type="submit" class="py-1 text-xl w-36 buttonBlue hover:outline-offset-2 hover:outline-2 hover:outline-double hover:outline-w">Rechercher</button>
+                    <button type="submit"
+                        class="py-1 text-xl w-36 buttonBlue hover:outline-offset-2 hover:outline-2 hover:outline-double hover:outline-w">Rechercher</button>
                 </div>
             </div>
         </form>
         <form (ngSubmit)="searchByStreet(street)" #street="ngForm">
             <div class="flex mr-8">
                 <div class="p-2 m-auto text-center">
-                    <input type="text" class="form-control inputBlue placeholder:text-w" name="keyStreet" placeholder="Adresse" ngModel>
+                    <input type="text" class="form-control inputBlue placeholder:text-w" name="keyStreet"
+                        placeholder="Adresse" ngModel>
                 </div>
                 <div class="p-2 m-auto form-group">
-                    <button type="submit" class="py-1 text-xl w-36 buttonBlue hover:outline-offset-2 hover:outline-2 hover:outline-double hover:outline-w">Rechercher</button>
+                    <button type="submit"
+                        class="py-1 text-xl w-36 buttonBlue hover:outline-offset-2 hover:outline-2 hover:outline-double hover:outline-w">Rechercher</button>
                 </div>
             </div>
         </form>
         <form (ngSubmit)="searchByZipcode(zipcode)" #zipcode="ngForm">
             <div class="flex mr-8">
                 <div class="p-2 m-auto text-center">
-                    <input type="text" class="form-control inputBlue placeholder:text-w" name="keyZipcode" placeholder="Code Postal" ngModel>
+                    <input type="text" class="form-control inputBlue placeholder:text-w" name="keyZipcode"
+                        placeholder="Code Postal" ngModel>
                 </div>
                 <div class="p-2 m-auto form-group">
-                    <button type="submit" class="py-1 text-xl w-36 buttonBlue hover:outline-offset-2 hover:outline-2 hover:outline-double hover:outline-w">Rechercher</button>
+                    <button type="submit"
+                        class="py-1 text-xl w-36 buttonBlue hover:outline-offset-2 hover:outline-2 hover:outline-double hover:outline-w">Rechercher</button>
                 </div>
             </div>
         </form>
         <div class="p-2 m-auto text-center">
-            <button type="text" (click)="annulerRecherche()" class="py-1 text-xl w-18 buttonOrange hover:outline-offset-2 hover:outline-2 hover:outline-double hover:outline-w">Annuler</button>
+            <button type="text" (click)="annulerRecherche()"
+                class="py-1 text-xl w-18 buttonOrange hover:outline-offset-2 hover:outline-2 hover:outline-double hover:outline-w">Annuler</button>
         </div>
     </div>
 
 
     <div class="p-2 mx-auto mt-6 text-center w-fit rounded-xl pagination">
         <h3 class="text-3xl text-w">
-            <button type="button" class="px-2 m-2" (click)="toPreviousPageOfCourses()"><i class=" fa-solid fa-circle-chevron-left"></i></button>
+            <button type="button" class="px-2 m-2" (click)="toPreviousPageOfCourses()"><i
+                    class=" fa-solid fa-circle-chevron-left"></i></button>
             {{page}}
-            <button type="button" class="px-2 m-2" (click)="toNextPageOfCourses()"><i class=" fa-solid fa-circle-chevron-right"></i></button>
+            <button type="button" class="px-2 m-2" (click)="toNextPageOfCourses()"><i
+                    class=" fa-solid fa-circle-chevron-right"></i></button>
         </h3>
     </div>
 
@@ -62,15 +73,16 @@
             <!-- card -->
             <div class="h-full p-4 mx-4 cardGrise">
                 <h3 class="text-center">Trajet proposé par</h3>
-                
+
                 <h3 class="text-center text-o">{{course.driverUsername}}</h3>
-        
+
                 <div class="flex-col mt-2">
                     <div>
                         <label>Adresse de départ</label>
                     </div>
                     <div class="mt-2">
-                        <button type="text" class="w-full inputBlue" disabled>{{course.streetDeparture +", "+course.departureZipCode +" "+course.cityDeparture}}</button>
+                        <button type="text" class="w-full inputBlue" disabled>{{course.streetDeparture +",
+                            "+course.departureZipCode +" "+course.cityDeparture}}</button>
                     </div>
                 </div>
                 <div class="flex-col mt-2">
@@ -78,16 +90,18 @@
                         <label>Adresse d'arrivée</label>
                     </div>
                     <div class="mt-2">
-                        <button type="text" class="w-full inputBlue" disabled>{{course.streetArrival + ", " +course.arrivalZipCode+ " " +course.cityArrival}}</button>
+                        <button type="text" class="w-full inputBlue" disabled>{{course.streetArrival + ", "
+                            +course.arrivalZipCode+ " " +course.cityArrival}}</button>
                     </div>
-                </div>  
+                </div>
                 <div class="flex mt-2">
                     <div class="flex-col basis-1/2">
                         <div class="mt-2">
                             <label>Date</label>
                         </div>
                         <div class="mt-2 mr-2">
-                            <button type="text" class="w-full inputBlue" disabled>{{course.date| date:'dd/MM/YYYY'}}</button>
+                            <button type="text" class="w-full inputBlue" disabled>{{course.date|
+                                date:'dd/MM/YYYY'}}</button>
                         </div>
                     </div>
                     <div class="flex-col basis-1/2">
@@ -95,22 +109,25 @@
                             <label>Horaire</label>
                         </div>
                         <div class="mt-2 ml-2">
-                            <button type="text" class="w-full inputBlue" disabled>{{course.date | date:'HH:mm'}}</button>
+                            <button type="text" class="w-full inputBlue" disabled>{{course.date |
+                                date:'HH:mm'}}</button>
                         </div>
                     </div>
-                </div> 
+                </div>
                 <div class="mt-2 ">
                     <div class="m-auto mt-4 text-center">
-                        <button class="w-40 py-2 text-xl buttonOrange hover:outline-offset-2 hover:outline-2 hover:outline-double hover:outline-w tip"
-                         (click)="addReservation(course)" data-bs-toggle="tooltip" title="{{textTooltip}}" [disabled]="!test">Reserver</button>
+                        <button
+                            class="w-40 py-2 text-xl buttonOrange hover:outline-offset-2 hover:outline-2 hover:outline-double hover:outline-w tip"
+                            (click)="addReservation(course)" data-bs-toggle="tooltip" title="{{textTooltip}}"
+                            [disabled]="!test">Reserver</button>
                     </div>
 
 
-                    
-                </div>          
+
+                </div>
             </div>
             <!-- Fin card -->
-            
+
         </div>
         <!-- Fin ngfor -->
 
@@ -118,7 +135,8 @@
 
 </div>
 
-<div id="tooltip-click" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+<div id="tooltip-click" role="tooltip"
+    class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
     Tooltip content
     <div class="tooltip-arrow" data-popper-arrow></div>
 </div>

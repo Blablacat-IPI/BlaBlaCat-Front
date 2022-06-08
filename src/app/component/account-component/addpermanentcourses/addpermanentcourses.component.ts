@@ -27,7 +27,7 @@ export class AddpermanentcoursesComponent implements OnInit {
     this.max = this.dateMax();
   }
 
-  addPermanentCourses(permanentCourse: NgForm) {
+  addPermanentCourses(permanentCourse: any) {
 
     permanentCourse.value.id = this.cookieService.get('CookieCatId');
     console.log(permanentCourse.value);

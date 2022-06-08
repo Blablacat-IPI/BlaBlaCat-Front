@@ -81,6 +81,18 @@ export class MycoursesComponent implements OnInit {
     this.getPage0Courses();
   }
 
+  deleteCourse(course: any){
+    if(confirm("Etes vous sûr de vouloir supprimer ce trajet ?")){
+      this.CourseService.deleteCourseService(course.id).subscribe(data => {
+        console.log("dans delete course");
+
+        this.initCourses();
+
+
+      })
+    }
+  }
+
   getPageMaxCourses() {
     this.CourseService.getPageMaxMyCourses(this.userId).subscribe(data => {
       this.pageMaxCourses = data;
