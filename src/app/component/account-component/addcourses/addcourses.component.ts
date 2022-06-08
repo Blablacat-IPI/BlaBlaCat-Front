@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 import { CoursesService } from 'src/app/services/courses.service';
 
 @Component({
@@ -7,6 +8,7 @@ import { CoursesService } from 'src/app/services/courses.service';
   styleUrls: ['./addcourses.component.css']
 })
 export class AddcoursesComponent implements OnInit {
+
   courseRegister:boolean = false
   //select
   ngDropdown = 0;
@@ -22,7 +24,7 @@ export class AddcoursesComponent implements OnInit {
   afficheCroix!: Boolean;
 
 
-  constructor(private cs: CoursesService) { }
+  constructor(private cs: CoursesService, private cookieService : CookieService) { }
 
   ngOnInit(): void {
     this.afficheCroix = CoursesService.afficheCroix;
@@ -32,7 +34,10 @@ export class AddcoursesComponent implements OnInit {
   }
 
   addCourses(course: any) {
-    this.cs.addCoursesFromService(course.value).subscribe(date => {
+    course.value.id = this.cookieService.get('CookieCatId');
+    console.log(this.cookieService.get('CookieCatId'));
+    this.cs.addCoursesFromService(course.value).subscribe(data => {
+      console.log(course.value);
       console.log('Course enregistré !')
       this.courseRegister = true;
       setTimeout(() => {
@@ -44,9 +49,6 @@ export class AddcoursesComponent implements OnInit {
   //Récupère la date du jour et la transforme en String yyyy:MM:ddTHH:mm pour les valeurs de l'input date
   dateNow(){
     this.dateTime = new Date(Date.now());
-
-    //A simplifier avec :https://stackoverflow.com/questions/34546447/bind-an-input-with-type-datetime-local-to-a-date-property-in-angular-2
-    //this.mois = this.dateTime.getMonth().toString();
 
     this.jour = this.dateTime.getDay().toString();
     this.mois = this.dateTime.getMonth().toString();
