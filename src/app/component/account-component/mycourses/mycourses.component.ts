@@ -34,6 +34,14 @@ export class MycoursesComponent implements OnInit {
     this.getPage0Reservations();
   }
 
+  deleteReservation(reservation: any){
+    console.log(reservation);
+    if(confirm("Etes vous sûr de vouloir supprimer cette réservation ?")){
+      this.CourseService.deleteReservationService(reservation.course_id, reservation.user_id).subscribe(data => {
+        this.initReservations();
+      })
+    }
+  }
 
   getPageMaxReservations() {
     this.CourseService.getPageMaxReservations(this.userId).subscribe(data => {
@@ -42,9 +50,9 @@ export class MycoursesComponent implements OnInit {
   }
 
   getPage0Reservations() {
-    console.log("Nombre de page max : " + this.pageMaxReservations)
+    //console.log("Nombre de page max : " + this.pageMaxReservations)
     this.pageReservations = 0;
-    console.log("Page actuelle : " + this.pageReservations)
+    //console.log("Page actuelle : " + this.pageReservations)
     this.CourseService.getPageOfMyReservationsFromService(this.pageReservations, this.userId).subscribe(data => {
       this.myReservations = data;
     })
@@ -61,7 +69,7 @@ export class MycoursesComponent implements OnInit {
     }
   }
 
-  //Faire un loader d'attente
+  //Faire un loader d'attente ?
   toNextPageReservations() {
     this.getPageMaxReservations();
     console.log("Nombre de page max : " + this.pageMaxReservations)
@@ -84,11 +92,7 @@ export class MycoursesComponent implements OnInit {
   deleteCourse(course: any){
     if(confirm("Etes vous sûr de vouloir supprimer ce trajet ?")){
       this.CourseService.deleteCourseService(course.id).subscribe(data => {
-        console.log("dans delete course");
-
         this.initCourses();
-
-
       })
     }
   }
@@ -121,7 +125,7 @@ export class MycoursesComponent implements OnInit {
     }
   }
 
-  //Faire un loader d'attente
+  //Faire un loader d'attente ?
   toNextPageCourses() {
     this.getPageMaxCourses();
     console.log("Nombre de page max : " + this.pageMaxCourses)
