@@ -7,7 +7,7 @@ import { CoursesService } from 'src/app/services/courses.service';
   styleUrls: ['./addpermanentcourses.component.css']
 })
 export class AddpermanentcoursesComponent implements OnInit {
-
+  permanentCourseRegister:boolean = false
   ngDropdown = 0;
   today!: String;
   max!: String;
@@ -25,9 +25,13 @@ export class AddpermanentcoursesComponent implements OnInit {
     this.max = this.dateMax();
   }
 
-  addCourses(course: any) {
-    this.cs.addCoursesFromService(course.value).subscribe(date => {
-      console.log('Course enregistré !')
+  addPermanentCourses(permanentCourse: any) {
+    this.cs.addPermanentCoursesFromService(permanentCourse.value).subscribe(data => {
+      console.log(data)
+      this.permanentCourseRegister = true;
+      setTimeout(() => {
+        this.permanentCourseRegister = false;
+      }, 2000);
     })
   }
 

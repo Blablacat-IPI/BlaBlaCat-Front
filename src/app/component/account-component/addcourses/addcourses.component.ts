@@ -32,7 +32,7 @@ export class AddcoursesComponent implements OnInit {
   }
 
   addCourses(course: any) {
-    this.cs.addCoursesFromService(course.value).subscribe(date => {
+    this.cs.addCoursesFromService(course.value).subscribe(data => {
       console.log('Course enregistré !')
       this.courseRegister = true;
       setTimeout(() => {
