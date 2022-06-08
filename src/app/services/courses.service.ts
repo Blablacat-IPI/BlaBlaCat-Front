@@ -58,7 +58,7 @@ export class CoursesService {
 
   // ********************************* MyReservations ************************************  
   getPageOfMyReservationsFromService(page: any, userId: any) {
-    return this.http.get('http://localhost:8080/Reservation/Page?page='+page +'&userId='+userId)
+    return this.http.get('http://localhost:8080/Reservation/Page?page=' + page + '&userId=' + userId)
   }
 
   getPageMaxReservations(userId: any) {
@@ -67,11 +67,15 @@ export class CoursesService {
 
   // ********************************* MyCourses **************************************
   getPageOfMyCoursesFromService(page: any, userId: any) {
-    return this.http.get('http://localhost:8080/Course/pageMyCourses?page='+page +'&userId='+userId)
+    return this.http.get('http://localhost:8080/Course/pageMyCourses?page=' + page + '&userId=' + userId)
   }
 
   getPageMaxMyCourses(userId: any) {
-    return this.http.get('http://localhost:8080/Course/pageMaxMyCourses' + userId)
+    return this.http.get('http://localhost:8080/Course/pageMaxMyCourses/' + userId)
+  }
+
+  deleteCourseService(courseId: any) {
+    return this.http.delete('http://localhost:8080/Course/deleteCourse/' + courseId);
   }
 
   // ******************************** AllCourses ****************************************
@@ -80,7 +84,7 @@ export class CoursesService {
   }
 
   getPageOfCoursesFromService(page: any) {
-    return this.http.get('http://localhost:8080/Course/pageAllCourses?page='+page)
+    return this.http.get('http://localhost:8080/Course/pageAllCourses?page='+ page)
   }
 
 }
