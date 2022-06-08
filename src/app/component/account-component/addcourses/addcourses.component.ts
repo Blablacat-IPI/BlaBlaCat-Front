@@ -35,9 +35,7 @@ export class AddcoursesComponent implements OnInit {
 
   addCourses(course: any) {
     course.value.id = this.cookieService.get('CookieCatId');
-    console.log(this.cookieService.get('CookieCatId'));
     this.cs.addCoursesFromService(course.value).subscribe(data => {
-      console.log(course.value);
       console.log('Course enregistré !')
       this.courseRegister = true;
       setTimeout(() => {
