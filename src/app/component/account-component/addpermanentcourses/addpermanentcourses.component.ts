@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
 import { CoursesService } from 'src/app/services/courses.service';
 
 @Component({
@@ -18,17 +20,21 @@ export class AddpermanentcoursesComponent implements OnInit {
   annee!: String;
   heure!: String;
 
-  constructor(private cs: CoursesService) { }
+  constructor(private cs: CoursesService, private cookieService : CookieService) { }
 
   ngOnInit(): void {
     this.today = this.dateNow();
     this.max = this.dateMax();
   }
 
-  addPermanentCourses(permanentCourse: any) {
+  addPermanentCourses(permanentCourse: NgForm) {
+
+    permanentCourse.value.id = this.cookieService.get('CookieCatId');
+    console.log(permanentCourse.value);
     this.cs.addPermanentCoursesFromService(permanentCourse.value).subscribe(data => {
       console.log(data)
       this.permanentCourseRegister = true;
+
       setTimeout(() => {
         this.permanentCourseRegister = false;
       }, 2000);
@@ -40,30 +46,23 @@ export class AddpermanentcoursesComponent implements OnInit {
   dateNow(){
     this.dateTime = new Date(Date.now());
 
-    //A simplifier avec :https://stackoverflow.com/questions/34546447/bind-an-input-with-type-datetime-local-to-a-date-property-in-angular-2
-    //this.mois = this.dateTime.getMonth().toString();
-
-    //toLocaleString => dd/MM/yyyy, HH:mm:ss
-    this.jour = this.dateTime.toLocaleString('fr-FR').split('/')[0];//dd
-    this.mois = this.dateTime.toLocaleString('fr-FR').split('/')[1];//MM
-    this.annee = this.dateTime.toLocaleString('fr-FR').split('/')[2].split(',')[0];//yyyy
-    this.heure = this.dateTime.toLocaleString('fr-FR').split(' ')[1].split(":")[0] + ":" + this.dateTime.toLocaleString('fr-FR').split(' ')[1].split(":")[1];
+    this.jour = this.dateTime.getDay().toString();
+    this.mois = this.dateTime.getMonth().toString();
+    this.annee = this.dateTime.getFullYear().toString();
     
-    return this.annee + "-" + this.mois + "-" + this.jour + "T" + this.heure;
+    return this.annee + "-" + this.mois + "-" + this.jour;
   }
 
   //Donne la valeur max de l'input Date (aujourd'hui + 2 ans)
   dateMax(){
     this.dateTime = new Date(Date.now());
 
-    //toLocaleString => dd/MM/yyyy, HH:mm:ss
-    this.jour = this.dateTime.toLocaleString('fr-FR').split('/')[0];//dd
-    this.mois = this.dateTime.toLocaleString('fr-FR').split('/')[1];//MM
-    this.annee = this.dateTime.toLocaleString('fr-FR').split('/')[2].split(',')[0];//yyyy
+    this.jour = this.dateTime.getDay().toString();
+    this.mois = this.dateTime.getMonth().toString();
+    this.annee = this.dateTime.getFullYear().toString();
     this.annee = (+this.annee + 2).toString();
-    this.heure = this.dateTime.toLocaleString('fr-FR').split(' ')[1].split(":")[0] + ":" + this.dateTime.toLocaleString('fr-FR').split(' ')[1].split(":")[1];
     
-    return this.annee + "-" + this.mois + "-" + this.jour + "T" + this.heure;
+    return this.annee + "-" + this.mois + "-" + this.jour;
   }
 
 }

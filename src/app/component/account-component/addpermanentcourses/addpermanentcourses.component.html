@@ -9,6 +9,7 @@
         <h1 class="text-3xl text-center">Créer un trajet Permanent</h1>
     
         <form (ngSubmit)="addPermanentCourses(courseFrom)" #courseFrom="ngForm">
+            <input type="hidden" name="id" ngModel>
             <div class="p-2 text-center form-group">
                 <h5 class="p-2">Adresse de départ</h5>
                 <div class="grid grid-cols-2 gap-3">
@@ -50,21 +51,20 @@
             <div class="grid grid-cols-2 gap-3 p-2 text-center">
                 <div class="col-span-1 pb-2 form-group">
                     <h5 class="p-2">Date de début</h5>
-                    <input type="date" class="w-full text-center form-control inputBlue placeholder:text-w" name="date"
+                    <input type="date" class="w-full text-center form-control inputBlue placeholder:text-w" name="dateDebut"
                         value={{today}} min={{today}} max={{max}} ngModel required>
                 </div>
                 <div class="col-span-1 pb-2 form-group">
                     <h5 class="p-2">Date de fin</h5>
-                    <input type="date" class="w-full text-center form-control inputBlue placeholder:text-w" name="date"
-                        value={{today}} min={{today}} max={{max}} ngModel required>
+                    <input type="date" class="w-full text-center form-control inputBlue placeholder:text-w" name="dateFin"
+                    value={{today}} min={{today}} max={{max}} ngModel required>
                 </div>
             </div>
     
             <div class="grid grid-cols-2 gap-3 p-2 text-center">
                 <div class="col-span-1 pb-2 form-group">
                     <h5 class="p-2">Heure</h5>
-                    <input type="time" class="w-full text-center form-control inputBlue placeholder:text-w" name="date"
-                        value={{today}} min={{today}} max={{max}} ngModel required>
+                    <input type="time" class="w-full text-center form-control inputBlue placeholder:text-w" name="time" ngModel required>
                 </div>
                 <div class="pb-2 form-group">
                     <h5 class="p-2">Nombre de place(s)</h5>
@@ -82,17 +82,7 @@
             <div>
                 <h3 class="p-2 text-center">Choisir les jours voulus</h3>
                 
-                <div>
-                    <div class="form-check">
-                        <div class="text-center">
-                            <label class=" text-b form-check-label" for="flexCheckDefault">Tous les jours</label>
-                        </div>
-                        <div class="text-center">
-                            <input class="w-4 h-4 mt-1 transition duration-200 bg-center bg-no-repeat bg-contain border rounded-sm appearance-none cursor-pointer align-center border-o bg-w form-check-input checked:bg-o checked:border-o focus:outline-none" 
-                             type="checkbox" value="" id="flexCheckDefault">
-                        </div>
-                    </div>
-                </div>
+
     
                 <div class="grid grid-cols-5 gap-2 p-2 text-center">
                     <div class="form-check">
@@ -101,7 +91,7 @@
                         </div>
                         <div class="text-center">
                             <input class="w-4 h-4 mt-1 transition duration-200 bg-center bg-no-repeat bg-contain border rounded-sm appearance-none cursor-pointer align-center border-o bg-w form-check-input checked:bg-o checked:border-o focus:outline-none" 
-                             type="checkbox" value="" id="flexCheckDefault">
+                             type="checkbox" value="1" id="flexCheckDefault" name="monday" ngModel>
                         </div>
                     </div>
                     <div class="form-check">
@@ -110,7 +100,7 @@
                         </div>
                         <div class="text-center">
                             <input class="w-4 h-4 mt-1 transition duration-200 bg-center bg-no-repeat bg-contain border rounded-sm appearance-none cursor-pointer align-center border-o bg-w form-check-input checked:bg-o checked:border-o focus:outline-none" 
-                             type="checkbox" value="" id="flexCheckDefault">
+                             type="checkbox" value="2" id="flexCheckDefault" name="tuesday" ngModel>
                         </div>
                     </div>
                     <div class="form-check">
@@ -119,7 +109,7 @@
                         </div>
                         <div class="text-center">
                             <input class="w-4 h-4 mt-1 transition duration-200 bg-center bg-no-repeat bg-contain border rounded-sm appearance-none cursor-pointer align-center border-o bg-w form-check-input checked:bg-o checked:border-o focus:outline-none" 
-                             type="checkbox" value="" id="flexCheckDefault">
+                             type="checkbox" value="3" id="flexCheckDefault" name="wednesday" ngModel>
                         </div>
                     </div>
                     <div class="form-check">
@@ -128,7 +118,7 @@
                         </div>
                         <div class="text-center">
                             <input class="w-4 h-4 mt-1 transition duration-200 bg-center bg-no-repeat bg-contain border rounded-sm appearance-none cursor-pointer align-center border-o bg-w form-check-input checked:bg-o checked:border-o focus:outline-none" 
-                             type="checkbox" value="" id="flexCheckDefault">
+                             type="checkbox" value="4" id="flexCheckDefault" name="thursday" ngModel>
                         </div>
                     </div>
                     <div class="form-check">
@@ -137,7 +127,7 @@
                         </div>
                         <div class="text-center">
                             <input class="w-4 h-4 mt-1 transition duration-200 bg-center bg-no-repeat bg-contain border rounded-sm appearance-none cursor-pointer align-center border-o bg-w form-check-input checked:bg-o checked:border-o focus:outline-none" 
-                             type="checkbox" value="" id="flexCheckDefault">
+                             type="checkbox" value="5" id="flexCheckDefault" name="friday" ngModel>
                         </div>
                     </div>
                 </div>
