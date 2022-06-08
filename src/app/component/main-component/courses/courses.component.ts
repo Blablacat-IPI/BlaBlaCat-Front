@@ -12,6 +12,7 @@ export class CoursesComponent implements OnInit {
   afficheRecherche:boolean = false;
   courseReservation:boolean = false;
   userId: any;
+
   page = 0;
   pagemax: any;
 

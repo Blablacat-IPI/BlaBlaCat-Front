@@ -1,13 +1,101 @@
 <div class="p-4 mx-auto my-8 w-fit">
 
     <div class="p-2 m-2 text-center bg-green-500 text-w rounded-xl" *ngIf="userRegister">
-        <h2>Utilisateur Enregistré, en attente de validation d'un Admin</h2>
+        <h2>Utilisateur enregistré, en attente de validation d'un Admin</h2>
     </div>
 
     <div class="p-4 mx-auto shadow-2xl rounded-xl w-fit bg-g text-w">
         <h1 class="mb-4 text-center">Inscription</h1>
+
+        <form [formGroup]="signUpForm" >
+            <div class="p-2">
     
-        <form (ngSubmit)="addUsers(userForm)" #userForm="ngForm">
+                <div class="flex">
+                    <div class="p-2 m-auto text-center form-group">
+                        <input type="text" class="form-control placeholder:text-w" [ngClass]="{'inputOrange': !usernameCheck, 'inputBlue': usernameCheck}" placeholder="Pseudo"
+                        formControlName="username">
+                    </div>
+                    <div class="p-2 m-auto text-center form-group">
+                        <input type="text" class="form-control placeholder:text-w" [ngClass]="{'inputOrange': !companyIdCheck, 'inputBlue': companyIdCheck}" placeholder="ID Entreprise"
+                        formControlName="idCompany">
+                    </div>
+                </div>
+                
+            <div class="p-2 errorWarning" *ngIf="!usernameCheck">
+                <span class="block sm:inline">Ce pseudo est déjà utilisé</span>
+            </div>
+            <div class="p-2 errorWarning" *ngIf="!companyIdCheck">
+                <span class="block sm:inline">Cet ID entrepprise est déjà utilisé</span>
+            </div>
+    
+                <div class="flex">
+                    <div class="p-2 m-auto text-center form-group">
+                        <input type="text" class="form-control inputBlue placeholder:text-w" placeholder="Nom"
+                        formControlName="lastName">
+                    </div>
+                    <div class="p-2 m-auto text-center form-group">
+                        <input type="text" class="form-control inputBlue placeholder:text-w" placeholder="Prénom"
+                        formControlName="firstName">
+                    </div>
+                </div>
+    
+                <h6 class="pt-2 pb-1 pl-2">Mot de passe de 8 caractères obligatoires (1 Maj, 1 Min, 1 Chiffre et 1 caractère
+                    spécial obligatoire)</h6>
+    
+                <div class="flex">
+                    <div class="p-2 m-auto text-center form-group">
+                        <input type="password" class="form-control placeholder:text-w" [ngClass]="{'inputOrange': !passwordRegExCheck, 'inputBlue': passwordRegExCheck}" placeholder="Mot de passe"
+                        formControlName="password">
+                    </div>
+                    <div class="p-2 m-auto text-center form-group">
+                        <input type="password" class="form-control inputBlue placeholder:text-w" [ngClass]="{'inputOrange': !passwordConfirm, 'inputBlue': passwordConfirm}"
+                            placeholder="Confirmation du mot de passe" formControlName="passwordVerified">
+                    </div>
+                </div>
+                <div class="p-2 errorWarning" *ngIf="!passwordRegExCheck">
+                    <span class="block sm:inline">Min. 8 caractères, 1 Maj, 1 Min, 1 Chiffre et 1 caractère spécial</span>
+                </div>
+                <div class="p-2 errorWarning" *ngIf="!passwordConfirm">
+                    <span class="block sm:inline">Mots de passe différents</span>
+                </div>
+    
+                <div class="p-2 m-auto text-center form-group">
+                    <input type="email" class="w-full form-control placeholder:text-w" [ngClass]="{'inputOrange': !emailRegExCheck || !emailVacant , 'inputBlue': emailRegExCheck && emailVacant}" placeholder="Email"
+                    formControlName="email">
+                </div>
+                <div class="p-2 errorWarning" *ngIf="!emailRegExCheck">
+                    <span class="block sm:inline">Email non conforme</span><br>
+                    <span class="block sm:inline">Exemples : xxxxxxxxxxx@xxxxxxx.fr ou xxxxxx@xxx.com</span>
+               </div>
+               <div class="p-2 errorWarning" *ngIf="!emailVacant">
+                   <span class="block sm:inline">Cet email est déjà utilisé</span>
+               </div>
+    
+                <div class="p-2 m-auto text-center form-group">
+                    <input type="email" class="w-full form-control placeholder:text-w" [ngClass]="{'inputOrange': !emailConfirm, 'inputBlue': emailConfirm}"
+                        placeholder="Confirmation email" formControlName="emailVerified">
+                </div>
+                <div class="p-2 errorWarning" *ngIf="!emailConfirm">
+                    <span class="block sm:inline">Vous devez confirmer le nouvel email</span>
+                </div>
+    
+                <div class="m-2 text-center">
+                    <button type="submit"
+                        class="w-40 py-1 text-xl buttonOrange hover:outline-offset-2 hover:outline-2 hover:outline-double hover:outline-w" 
+                        (click)="onSubmitForm()" [disabled]="signUpForm.invalid || !allValid">S'inscrire</button>
+                </div>
+    
+                <div class="pt-1 text-center">
+                    <p>Déjà Inscrit ? <a routerLink="/login"
+                            class="hover:underline hover:underline-offset-4 hover:decoration-w">Se Connecter</a></p>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+        <!-- **************** old form ***************-->
+        <!-- <form (ngSubmit)="addUsers(userForm)" #userForm="ngForm">
             <div class="p-2">
     
                 <div class="flex">
@@ -66,6 +154,6 @@
                             class="hover:underline hover:underline-offset-4 hover:decoration-w">Se Connecter</a></p>
                 </div>
             </div>
-        </form>
-    </div>
-</div>
+        </form> -->
+
+        <!-- ****************************************************************************************-->

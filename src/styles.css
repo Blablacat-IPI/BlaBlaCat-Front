@@ -5,16 +5,16 @@
 
 
 html, body {
-    height: 100%;
     padding: 0;
     margin: 0;
-}
-
-body {
-    width:100%;
     height: 100%;
     background-color: #3E393A;
 }
+
+app-sidebar, app-sign-up, app-login, app-courses {
+    height: 100%;
+}
+
 
 h1 {
     font-size: 3rem;

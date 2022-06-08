@@ -55,7 +55,7 @@
                 <input type="password" class="w-full form-control placeholder:text-w" [ngClass]="{'inputOrange': passwordError, 'inputBlue': !passwordError}" formControlName="password" placeholder="Modifer le mot de passe">
             </div>
             <div class="p-2 errorWarning" *ngIf="passwordError">
-                <span class="block sm:inline">Min. 8 caractères, 1 Maj, 1 Min, 1 Chiffre et 1 caractère spécial obligatoire</span>
+                <span class="block sm:inline">Min. 8 caractères, 1 Maj, 1 Min, 1 Chiffre et 1 caractère spécial</span>
             </div>
             
             <div class="p-2 m-auto text-center form-group" *ngIf="!passwordConfirm || (profilForm.get('passwordVerified')?.dirty)">
