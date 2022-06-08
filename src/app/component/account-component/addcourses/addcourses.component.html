@@ -15,6 +15,7 @@
         </div>
     
         <form (ngSubmit)="addCourses(courseFrom)" #courseFrom="ngForm">
+            <input type="hidden" name ="id" ngModel>
             <div class="p-2 text-center form-group">
                 <h5 class="p-2">Adresse de départ</h5>
                 <div class="grid grid-cols-2 gap-3">
