@@ -25,6 +25,11 @@ export class CoursesService {
     return this.http.post("http://localhost:8080/Course/add", course);
   }
 
+  //Permet la création d'un trajet permanent sur une durée voulu
+  addPermanentCoursesFromService(permanentCourse: any){
+    return this.http.post("http://localhost:8080/Course/addPermanent", permanentCourse);
+  }
+
   //Permet à un utilisateur de s'inscrire à un trajet
   addReservationFromService(newReservation:any){
     return this.http.post('http://localhost:8080/Reservation/add', newReservation);
