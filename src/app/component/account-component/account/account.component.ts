@@ -100,11 +100,16 @@ export class AccountComponent implements OnInit {
   checkUsername(value: string) {
     //true si modification par l'user
     if (this.profilForm.get('username')?.dirty) {
-
+      
+      console.log("username check 1 " + this.usernameCheck);
       //Ne compare que si l'input est différent de l'Username actuel de l'user
-      if (this.user.username.toString != value.toString) {
+      if (this.user.username.toString() != value.toString()) {
+        
+      console.log("username check 2.1 " + this.usernameCheck);
+
         this.userService.checkUsernameService(value).subscribe(data => {
           this.usernameCheck = data;
+          console.log("username check 2 " + this.usernameCheck);
           //si False, bouton désactivé (html)
         })
       } else {
