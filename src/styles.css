@@ -2,3 +2,93 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+html, body {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    background-color: #3E393A;
+}
+
+app-sidebar, app-sign-up, app-login, app-courses {
+    height: 100%;
+}
+
+
+h1 {
+    font-size: 3rem;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+h6 {
+    font-size: 60%;
+}
+
+
+.cardGrise {
+    background-color: #626262;
+    color: white;
+    border-radius: 1rem;
+}
+/* .cardGrise:hover {
+    border: 2px solid #EC6433;
+} */
+
+
+.buttonOrange {
+    border: 2px solid #EC6433;
+    border-radius: 25px;
+    color: white;
+    background-color: #EC6433;
+} 
+
+.buttonBlue {
+    border: 2px solid #33BEF3;
+    border-radius: 25px;
+    color: white;
+    background-color: #33BEF3;
+} 
+
+.buttonWhite {
+    border: 2px solid white;
+    border-radius: 25px;
+    color: black;
+    background-color: white;
+} 
+
+.inputOrange {
+    border: 2px solid #EC6433;
+    border-radius: 25px;
+    color: white;
+    background-color: #626262;
+} ::placeholder {
+    color: white;
+    font-size: 85%;
+}
+
+.inputBlue {
+    border: 2px solid #33BEF3;
+    border-radius: 25px;
+    color: white;
+    background-color: #626262;
+} ::placeholder {
+    font-size: 85%;
+}
+
+.errorWarning {
+    border: 2px solid rgb(241, 48, 48);
+    border-radius: 25px;
+    color: rgb(197, 0, 0);
+    background-color: rgb(221, 198, 198);
+}
+footer {
+    background-color: #626262;
+}

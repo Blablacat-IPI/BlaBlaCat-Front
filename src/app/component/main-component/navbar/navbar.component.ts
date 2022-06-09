@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AppService } from 'src/app/services/app.service';
-
+import { Router, RouterLink } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,56 +9,43 @@ import { AppService } from 'src/app/services/app.service';
 })
 
 export class NavbarComponent implements OnInit {
-  afficherhomepage:boolean = false
-  affichercourses:boolean = false
-  affichersignup:boolean = false
-  afficherlogin:boolean = false
-  afficheraccount:boolean = false
+  signuptoggle:boolean = true
+  logintoggle:boolean = true
+  accounttoggle:boolean = false
+  addcoursestoggle:boolean = false
+  logouttoggle:boolean = false
 
-  constructor(private apps: AppService) { }
+  username = ''
+  role = ''
+  id = ''
+
+  constructor(private cookie: CookieService, private router: Router) { 
+    this.username = this.cookie.get('CookieCatUsername')
+    this.role = this.cookie.get('CookieCatRole')
+    this.id = this.cookie.get('CookieCatId')
+
+    if (this.username != '' && this.role != '' && this.id != ''){
+      this.signuptoggle = false
+      this.logintoggle = false
+      this.accounttoggle = true
+      this.addcoursestoggle = true
+      this.logouttoggle = true
+    }
+  }
 
   ngOnInit(): void {
+
   }
+
+  logOut() {
+    this.cookie.deleteAll();
+    setTimeout(() => {
+      location.reload()
+    }, 100);
+    this.router.navigate([""])
+  }
+
   
-  afficherHomepage() {
-    this.afficherhomepage=true;
 
-    this.affichercourses=false;
-    this.affichersignup=false;
-    this.afficherlogin=false;
-    this.afficheraccount=false;
-  }
 
-  afficherCourses() {
-    this.affichercourses=true;
-
-    this.afficherhomepage=false;
-    this.affichersignup=false;
-    this.afficherlogin=false;
-    this.afficheraccount=false;
-  }
-  afficherSignup() {
-    this.affichersignup=true;
-
-    this.affichercourses=false;
-    this.afficherhomepage=false;
-    this.afficherlogin=false;
-    this.afficheraccount=false;
-  }
-  afficherLogin() {
-    this.afficherlogin=true;
-
-    this.affichercourses=false;
-    this.affichersignup=false;
-    this.afficherhomepage=false;
-    this.afficheraccount=false;
-  }
-  afficherAccount() {
-    this.afficheraccount=true;
-
-    this.affichercourses=false;
-    this.affichersignup=false;
-    this.afficherlogin=false;
-    this.afficherhomepage=false;
-  }
 }

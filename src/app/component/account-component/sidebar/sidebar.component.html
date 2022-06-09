@@ -1,1 +1,66 @@
-<p>sidebar works!</p>
+<div class="flex h-full">
+  <aside class="flex-none w-fit sidebar" aria-label="Sidebar">
+    <div class="px-3 py-4 overflow-y-auto rounded">
+      <!-- Zone users -->
+      <ul class="space-y-2">
+        <li>
+          <button class="flex items-center p-2 text-base"
+           (click)="afficherAccount()">
+           <i class="fa-solid fa-house-user"></i>
+          <span class="ml-3 text-w hover:underline hover:underline-offset-8 hover:decoration-w ">Mon profil</span>
+        </button>
+        </li>
+        <li>
+          <button class="flex items-center p-2 text-base "
+           (click)="afficherAddPermanentCourses()">
+           <i class="fa-solid fa-arrows-rotate"></i>
+          <span class="ml-3 text-w hover:underline hover:underline-offset-8 hover:decoration-w ">Créer un trajet permanent</span>
+          </button>
+        </li>
+        <li>
+          <button class="flex items-center p-2 text-base"
+           (click)="afficherAddCourses()">
+           <i class="fa-solid fa-plus"></i>
+          <span class="ml-3 text-w hover:underline hover:underline-offset-8 hover:decoration-w">Créer un trajet</span>
+          </button>
+        </li>
+        <li>
+          <button class="flex items-center p-2 text-base"
+           (click)="afficherMyCourses()">
+          <i class="fa-solid fa-car"></i>
+          <span class="ml-3 text-w hover:underline hover:underline-offset-8 hover:decoration-w">Mes trajets</span>
+          </button>
+        </li>
+
+      </ul>
+
+      <!-- Zone Admin -->
+
+      <ul class="pt-4 mt-4 space-y-2 lineseparator" *ngIf="Admintoggle">
+        <li>
+          <button class="flex items-center p-2 text-base"
+           (click)="afficherValidateAccount()">
+          <i class="fa-solid fa-check"></i>
+          <span class="ml-3 text-w hover:underline hover:underline-offset-8 hover:decoration-w ">Validation</span>
+          </button>
+        </li>
+        <li>
+          <button class="flex items-center p-2 text-base"
+           (click)="afficherUsers()">
+          <i class="fa-solid fa-user"></i>
+          <span class="ml-3 text-w hover:underline hover:underline-offset-8 hover:decoration-w">Utilisateurs</span>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </aside>
+        <!-- Zone Autre -->
+      <div class="flex-1 pb-8 page">
+        <app-validate-account *ngIf="afficherVa"></app-validate-account>
+        <app-users *ngIf="afficherU"></app-users>
+        <app-addcourses *ngIf="afficherAc"></app-addcourses>
+        <app-mycourses *ngIf="afficherMc"></app-mycourses>
+        <app-addpermanentcourses *ngIf="afficherAPc"></app-addpermanentcourses>
+        <app-account *ngIf="afficherA"></app-account>
+      </div>
+</div>

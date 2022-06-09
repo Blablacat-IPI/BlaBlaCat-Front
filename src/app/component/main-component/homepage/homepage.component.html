@@ -1,1 +1,72 @@
-<p>homepage works!</p>
+<div>
+    <!-- Présentation -->
+    <div class="flex place-items-center">
+        <!-- Texte et Bouton inscription -->
+        <div class="p-4 m-4 text-center ">
+            <h1 class="text-w">Commencer à partager vos trajets en vous inscrivant !</h1>
+            <button class="w-40 py-2 mt-4 text-xl buttonOrange hover:outline-offset-2 hover:outline-2 hover:outline-double hover:outline-b" routerLink="signup">S'inscrire</button>
+        </div>
+        <!-- Gros logo -->
+        <div class="flex">
+            <img class="w-auto" src="/assets/image/gros_logo_accueil.png" alt="Logo">
+        </div>
+    </div>
+    <!-- Card derniers trajets -->
+    <div>
+        <h1 class="m-10 text-center text-b">Découvrir les derniers trajets</h1>
+
+        <div class="grid grid-cols-5 mx-20 my-10 h-fit rounded-xl">
+            <!-- Début de la boucle ngFor -->
+            <div *ngFor="let course of lastCourses">
+                <!-- card -->
+                <div class="h-full p-4 mx-4 cardGrise">
+                    <h3 class="text-center">Trajet proposé par</h3>
+                    <h3 class="text-center text-o">{{course.driverUsername}}</h3>
+            
+                    <div class="flex-col mt-2">
+                        <div>
+                            <label>Adresse de départ</label>
+                        </div>
+                        <div class="mt-2">
+                            <button type="text" class="w-full inputBlue" disabled>{{course.streetDeparture +", "+course.departureZipCode +" "+ course.cityDeparture}}</button>
+                        </div>
+                    </div>
+                    <div class="flex-col mt-2">
+                        <div>
+                            <label>Adresse d'arrivée</label>
+                        </div>
+                        <div class="mt-2">
+                            <button type="text" class="w-full inputBlue" disabled>{{course.streetArrival + ", " + course.arrivalZipCode + " " + course.cityArrival}}</button>
+                        </div>
+                    </div>  
+                    <div class="flex mt-2">
+                        <div class="flex-col basis-1/2">
+                            <div class="mt-2">
+                                <label>Date</label>
+                            </div>
+                            <div class="mt-2 mr-2">
+                                <button type="text" class="w-full inputBlue" disabled>{{course.date| date:'dd/MM/YYYY'}}</button>
+                            </div>
+                        </div>
+                        <div class="flex-col basis-1/2">
+                            <div class="mt-2 ml-2">
+                                <label>Horaire</label>
+                            </div>
+                            <div class="mt-2 ml-2">
+                                <button type="text" class="w-full inputBlue" disabled>{{course.date | date:'HH:mm'}}</button>
+                            </div>
+                        </div>
+                    </div>
+          
+                </div>
+                <!-- Fin card -->
+            </div>
+            <!-- Fin ngfor -->
+        </div>
+        <div class="mt-10 mb-32 text-center">
+            <button routerLink="courses" class="w-40 py-2 mt-4 text-xl buttonBlue hover:outline-offset-2 hover:outline-2 hover:outline-double hover:outline-w">Voir plus</button>
+        </div>
+
+    </div>
+    <!-- Fin dernier Trajet -->
+</div>
