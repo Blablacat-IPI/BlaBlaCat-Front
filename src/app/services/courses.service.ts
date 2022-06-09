@@ -12,32 +12,32 @@ export class CoursesService {
 
   //Récupère tous les trajets de manière général
   getCoursesFromService(){
-    return this.http.get('http://localhost:8080/Course/allValid');
+    return this.http.get('https://blablacat.herokuapp.com/Course/allValid');
   }
 
   //Récupère les 5 derniers trajets pour la page homepage
   getLastFiveCoursesService(){
-    return this.http.get('http://localhost:8080/Course/lastFive');
+    return this.http.get('https://blablacat.herokuapp.com/Course/lastFive');
   }
 
   //Permet la création d'un trajet
   addCoursesFromService(course: any) {
-    return this.http.post("http://localhost:8080/Course/add", course);
+    return this.http.post("https://blablacat.herokuapp.com/Course/add", course);
   }
 
   //Permet la création d'un trajet permanent sur une durée voulu
   addPermanentCoursesFromService(permanentCourse: any){
-    return this.http.post("http://localhost:8080/Course/addPermanent", permanentCourse);
+    return this.http.post("https://blablacat.herokuapp.com/Course/addPermanent", permanentCourse);
   }
 
   //Permet à un utilisateur de s'inscrire à un trajet
   addReservationFromService(newReservation:any){
-    return this.http.post('http://localhost:8080/Reservation/add', newReservation);
+    return this.http.post('https://blablacat.herokuapp.com/Reservation/add', newReservation);
   }
 
   //Permer d'obtenir toutes les réservations
   // getMyCoursesFromService() {
-  //   return this.http.get('http://localhost:8080/Reservation/all');
+  //   return this.http.get('https://blablacat.herokuapp.com/Reservation/all');
   // }
   
   // ********************************* Filtre ************************************ 
@@ -45,50 +45,50 @@ export class CoursesService {
   //Filtre par ville
   searchByCityService(city: any) {
     let keyCity = city.value.keyCity;
-    return this.http.get('http://localhost:8080/Course/searchcity/' + keyCity)
+    return this.http.get('https://blablacat.herokuapp.com/Course/searchcity/' + keyCity)
   }
   searchByStreetService(street: any) {
     let keyStreet = street.value.keyStreet;
-    return this.http.get('http://localhost:8080/Course/searchstreet/' + keyStreet)
+    return this.http.get('https://blablacat.herokuapp.com/Course/searchstreet/' + keyStreet)
   }
   searchByZipcodeService(zipcode: any) {
     let keyZipcode = zipcode.value.keyZipcode;
-    return this.http.get('http://localhost:8080/Course/searchzipcode/' + keyZipcode)
+    return this.http.get('https://blablacat.herokuapp.com/Course/searchzipcode/' + keyZipcode)
   }
 
   // ********************************* MyReservations ************************************  
   getPageOfMyReservationsFromService(page: any, userId: any) {
-    return this.http.get('http://localhost:8080/Reservation/Page?page=' + page + '&userId=' + userId)
+    return this.http.get('https://blablacat.herokuapp.com/Reservation/Page?page=' + page + '&userId=' + userId)
   }
 
   getPageMaxReservations(userId: any) {
-    return this.http.get('http://localhost:8080/Reservation/pagemax' + userId)
+    return this.http.get('https://blablacat.herokuapp.com/Reservation/pagemax' + userId)
   }
 
   deleteReservationService(courseId: any, userId: any) {
-    return this.http.delete('http://localhost:8080/Reservation/delete/' + courseId +'/'+ userId);
+    return this.http.delete('https://blablacat.herokuapp.com/Reservation/delete/' + courseId +'/'+ userId);
   }
 
   // ********************************* MyCourses **************************************
   getPageOfMyCoursesFromService(page: any, userId: any) {
-    return this.http.get('http://localhost:8080/Course/pageMyCourses?page=' + page + '&userId=' + userId)
+    return this.http.get('https://blablacat.herokuapp.com/Course/pageMyCourses?page=' + page + '&userId=' + userId)
   }
 
   getPageMaxMyCourses(userId: any) {
-    return this.http.get('http://localhost:8080/Course/pageMaxMyCourses/' + userId)
+    return this.http.get('https://blablacat.herokuapp.com/Course/pageMaxMyCourses/' + userId)
   }
 
   deleteCourseService(courseId: any) {
-    return this.http.delete('http://localhost:8080/Course/deleteCourse/' + courseId);
+    return this.http.delete('https://blablacat.herokuapp.com/Course/deleteCourse/' + courseId);
   }
 
   // ******************************** AllCourses ****************************************
   getPageMaxOfCourses() {
-    return this.http.get('http://localhost:8080/Course/pageMaxAllCourses')
+    return this.http.get('https://blablacat.herokuapp.com/Course/pageMaxAllCourses')
   }
 
   getPageOfCoursesFromService(page: any) {
-    return this.http.get('http://localhost:8080/Course/pageAllCourses?page='+ page)
+    return this.http.get('https://blablacat.herokuapp.com/Course/pageAllCourses?page='+ page)
   }
 
 }
