@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
@@ -24,7 +25,7 @@ export class SignUpComponent implements OnInit {
   regExEmail: RegExp = /^[\w-\.]+@([\w-]+\.)+[\w{1,3}]{2,3}$/; // xxxxxxxxxxxx@XXXXXXXX.XX(XX)
   regExPassword: RegExp = /^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W]){1,})(?!.*\s).{8,}$/;//8 caractères minimum, 1 maj, 1 min, 1 chiffre, 1 caractère speciale
 
-  constructor(private us: UsersService, private formBuilder: FormBuilder) { }
+  constructor(private router: Router,private us: UsersService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -152,24 +153,10 @@ export class SignUpComponent implements OnInit {
     console.log(this.signUpForm.value);
 
     this.us.addUsersFromService(this.signUpForm.value).subscribe(data => {
-      console.log('User enregistré');
-      this.userRegister = true;
-      setTimeout(() => {
-        this.userRegister = false;
-      }, 2000);
+      if(confirm("Inscription réussit, en attente d'une validation par l'administrateur")){
+        this.router.navigate([""]);
+      }
     })
   }
-
-
-  // addUsers(user: any) {
-  //   console.log(user.value)
-  //   this.us.addUsersFromService(user.value).subscribe(data => {
-  //     console.log('Users Enregistré');
-  //     this.userRegister = true;
-  //     setTimeout(() => {
-  //       this.userRegister = false;
-  //     }, 2000);
-  //   })
-  // }
 
 }
