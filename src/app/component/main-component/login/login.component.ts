@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
     console.log(loginForm.value);
     this.service.loginService(loginForm.value.email, loginForm.value.password).subscribe(data => {
       console.log(data);
-      if (data) {
+      if (data == 1) {
         this.service.getUserCookieFromService(loginForm.value.email).subscribe(dataCookie => {
           console.log(dataCookie);
           this.Cookie=dataCookie;
@@ -33,6 +33,10 @@ export class LoginComponent implements OnInit {
           }, 100);
 
         })
+      } else  if (data == 0){
+        confirm("Identifiants incorrects");
+      } else {
+        confirm("Compte en attente de validation par l'administrateur");
       }
 
     })

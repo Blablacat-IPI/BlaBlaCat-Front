@@ -50,12 +50,13 @@ export class CoursesComponent implements OnInit {
       userId: this.userId};
 
     this.courseS.addReservationFromService(reservation).subscribe(data => {
-      this.courses.numberPlace - 1;
-      console.log("Trajet enregistré" + " " + "Places disponibles");
-      this.courseReservation = true;
-      setTimeout(() => {
-        this.courseReservation = false;
-      }, 2000);
+      confirm("Vous avez réservé une place pour le trajet :/ntest");
+      // this.courses.numberPlace - 1;
+      // console.log("Trajet enregistré" + " " + "Places disponibles");
+      // this.courseReservation = true;
+      // setTimeout(() => {
+      //   this.courseReservation = false;
+      // }, 2000);
     })
   }
 
