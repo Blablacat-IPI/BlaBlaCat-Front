@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { CoursesService } from 'src/app/services/courses.service';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-courses',
@@ -21,7 +22,7 @@ export class CoursesComponent implements OnInit {
   test:boolean = false
 
 
-  constructor(private courseS: CoursesService, private cookie: CookieService) { }
+  constructor(private courseS: CoursesService, private userService: UsersService, private cookie: CookieService) { }
 
   ngOnInit(): void {
     this.userId = this.cookie.get('CookieCatId');
@@ -50,13 +51,11 @@ export class CoursesComponent implements OnInit {
       userId: this.userId};
 
     this.courseS.addReservationFromService(reservation).subscribe(data => {
-      confirm("Vous avez réservé une place pour le trajet :/ntest");
-      // this.courses.numberPlace - 1;
-      // console.log("Trajet enregistré" + " " + "Places disponibles");
-      // this.courseReservation = true;
-      // setTimeout(() => {
-      //   this.courseReservation = false;
-      // }, 2000);
+      this.userService.getDriverEmail(course.driverUsername).subscribe(data => {
+        confirm("Vous avez réservé une place pour le trajet de " + course.driverUsername + ".\nContact : " + data);
+      })
+      
+      
     })
   }
 

@@ -83,7 +83,7 @@
                 <!-- Début Card-->
                 <div class="h-full p-4 mx-4 cardGrise">
                     <h3 class="text-center">Trajet proposé par</h3>
-                    <h3 class="text-center text-o">{{myReservation.username}}</h3>
+                    <h3 class="text-center text-o hover:underline hover:cursor-pointer" (click)="showEmail(myReservation.username)">{{myReservation.username}}</h3>
                     <div class="form-group">
                         <div class="flex-col mt-2">
                             <div><label>Adresse de départ</label></div>
