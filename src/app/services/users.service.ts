@@ -38,7 +38,11 @@ export class UsersService {
   }
 
   getUserCookieFromService(email: any){
-    return this.http.get('http://localhost:8080/Auth/Usercookie?email='+email)
+    return this.http.get('http://localhost:8080/Auth/Usercookie?email='+email );
+  }
+
+  getDriverEmail(driverUsername: string){
+    return this.http.get('http://localhost:8080/Users/email/' + driverUsername, {responseType: 'text' });
   }
 
   //Permet d'obtenir la liste des users validée

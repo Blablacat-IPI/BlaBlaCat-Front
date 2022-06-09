@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { CoursesService } from 'src/app/services/courses.service';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-mycourses',
@@ -20,7 +21,7 @@ export class MycoursesComponent implements OnInit {
   pageCourses = 0;
   pageMaxCourses: any;
 
-  constructor(private CourseService: CoursesService, private cookieService: CookieService) { }
+  constructor(private CourseService: CoursesService, private userService: UsersService, private cookieService: CookieService) { }
 
   ngOnInit(): void {
     this.userId = this.cookieService.get('CookieCatId');
@@ -96,6 +97,12 @@ export class MycoursesComponent implements OnInit {
       })
     }
   }
+
+  showEmail(driverUsernama: string){
+    this.userService.getDriverEmail(driverUsernama).subscribe(data => {
+      confirm("Email du conducteur : " + data);
+    })
+   }
 
   getPageMaxCourses() {
     this.CourseService.getPageMaxMyCourses(this.userId).subscribe(data => {
