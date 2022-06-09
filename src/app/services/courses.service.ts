@@ -35,10 +35,10 @@ export class CoursesService {
     return this.http.post('http://localhost:8080/Reservation/add', newReservation);
   }
 
-  //Permer d'obtenir les courses que le conducteur créer
-  getMyCoursesFromService() {
-    return this.http.get('http://localhost:8080/Reservation/all');
-  }
+  //Permer d'obtenir toutes les réservations
+  // getMyCoursesFromService() {
+  //   return this.http.get('http://localhost:8080/Reservation/all');
+  // }
   
   // ********************************* Filtre ************************************ 
 
@@ -63,6 +63,10 @@ export class CoursesService {
 
   getPageMaxReservations(userId: any) {
     return this.http.get('http://localhost:8080/Reservation/pagemax' + userId)
+  }
+
+  deleteReservationService(courseId: any, userId: any) {
+    return this.http.delete('http://localhost:8080/Reservation/delete/' + courseId +'/'+ userId);
   }
 
   // ********************************* MyCourses **************************************
